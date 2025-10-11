@@ -5,10 +5,10 @@
  */
 export const getAllHabits = () => {
   try {
-    const habits = localStorage.getItem('habits');
+    const habits = localStorage.getItem("habits");
     return habits ? JSON.parse(habits) : [];
   } catch (error) {
-    console.error('Error getting habits:', error);
+    console.error("Error getting habits:", error);
     return [];
   }
 };
@@ -34,10 +34,10 @@ export const getHabitById = (habitId) => {
  */
 export const saveHabits = (habits) => {
   try {
-    localStorage.setItem('habits', JSON.stringify(habits));
+    localStorage.setItem("habits", JSON.stringify(habits));
     return true;
   } catch (error) {
-    console.error('Error saving habits:', error);
+    console.error("Error saving habits:", error);
     return false;
   }
 };
@@ -47,10 +47,10 @@ export const saveHabits = (habits) => {
  */
 export const getAllCompletions = () => {
   try {
-    const completions = localStorage.getItem('completions');
+    const completions = localStorage.getItem("completions");
     return completions ? JSON.parse(completions) : [];
   } catch (error) {
-    console.error('Error getting completions:', error);
+    console.error("Error getting completions:", error);
     return [];
   }
 };
@@ -60,10 +60,10 @@ export const getAllCompletions = () => {
  */
 export const saveCompletions = (completions) => {
   try {
-    localStorage.setItem('completions', JSON.stringify(completions));
+    localStorage.setItem("completions", JSON.stringify(completions));
     return true;
   } catch (error) {
-    console.error('Error saving completions:', error);
+    console.error("Error saving completions:", error);
     return false;
   }
 };
@@ -73,23 +73,23 @@ export const saveCompletions = (completions) => {
  */
 export const getSettings = () => {
   try {
-    const settings = localStorage.getItem('settings');
+    const settings = localStorage.getItem("settings");
     return settings
       ? JSON.parse(settings)
       : {
-          theme: 'dark',
-          userName: 'Champion',
+          theme: "dark",
+          userName: "Champion",
           motivationalQuotes: true,
-          startOfWeek: 'monday',
+          startOfWeek: "monday",
           notifications: true,
         };
   } catch (error) {
-    console.error('Error getting settings:', error);
+    console.error("Error getting settings:", error);
     return {
-      theme: 'dark',
-      userName: 'Champion',
+      theme: "dark",
+      userName: "Champion",
       motivationalQuotes: true,
-      startOfWeek: 'monday',
+      startOfWeek: "monday",
       notifications: true,
     };
   }
@@ -100,10 +100,10 @@ export const getSettings = () => {
  */
 export const saveSettings = (settings) => {
   try {
-    localStorage.setItem('settings', JSON.stringify(settings));
+    localStorage.setItem("settings", JSON.stringify(settings));
     return true;
   } catch (error) {
-    console.error('Error saving settings:', error);
+    console.error("Error saving settings:", error);
     return false;
   }
 };
@@ -113,7 +113,7 @@ export const saveSettings = (settings) => {
  */
 export const isLocalStorageAvailable = () => {
   try {
-    const test = '__localStorage_test__';
+    const test = "__localStorage_test__";
     localStorage.setItem(test, test);
     localStorage.removeItem(test);
     return true;
@@ -127,9 +127,9 @@ export const isLocalStorageAvailable = () => {
  */
 export const getStorageStats = () => {
   try {
-    const habits = localStorage.getItem('habits') || '';
-    const completions = localStorage.getItem('completions') || '';
-    const settings = localStorage.getItem('settings') || '';
+    const habits = localStorage.getItem("habits") || "";
+    const completions = localStorage.getItem("completions") || "";
+    const settings = localStorage.getItem("settings") || "";
 
     const totalSize = habits.length + completions.length + settings.length;
     const sizeInKB = (totalSize / 1024).toFixed(2);
@@ -137,14 +137,14 @@ export const getStorageStats = () => {
     return {
       totalSize,
       sizeInKB,
-      habitCount: JSON.parse(habits || '[]').length,
-      completionCount: JSON.parse(completions || '[]').length,
+      habitCount: JSON.parse(habits || "[]").length,
+      completionCount: JSON.parse(completions || "[]").length,
     };
   } catch (error) {
-    console.error('Error getting storage stats:', error);
+    console.error("Error getting storage stats:", error);
     return {
       totalSize: 0,
-      sizeInKB: '0',
+      sizeInKB: "0",
       habitCount: 0,
       completionCount: 0,
     };
@@ -158,7 +158,7 @@ export const validateDataIntegrity = () => {
   try {
     const habits = getAllHabits();
     const completions = getAllCompletions();
-    
+
     // Check for orphaned completions (completions without corresponding habits)
     const habitIds = new Set(habits.map((h) => h.id));
     const orphanedCompletions = completions.filter(
@@ -172,7 +172,7 @@ export const validateDataIntegrity = () => {
       totalCompletions: completions.length,
     };
   } catch (error) {
-    console.error('Error validating data:', error);
+    console.error("Error validating data:", error);
     return {
       isValid: false,
       error: error.message,
@@ -188,15 +188,15 @@ export const cleanOrphanedCompletions = () => {
     const habits = getAllHabits();
     const completions = getAllCompletions();
     const habitIds = new Set(habits.map((h) => h.id));
-    
+
     const cleanedCompletions = completions.filter((comp) =>
       habitIds.has(comp.habitId)
     );
-    
+
     saveCompletions(cleanedCompletions);
     return completions.length - cleanedCompletions.length;
   } catch (error) {
-    console.error('Error cleaning completions:', error);
+    console.error("Error cleaning completions:", error);
     return 0;
   }
 };

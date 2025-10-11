@@ -30,30 +30,27 @@ const WeekCalendar = ({ dates, completions, onDateSelect }) => {
           <button
             key={date}
             onClick={() => handleDateClick(date)}
-            className={`flex-1 flex flex-col items-center gap-2 p-3 rounded-xl transition-all duration-300 ${
-              isSelected
+            className={`flex-1 flex flex-col items-center gap-2 p-3 rounded-xl transition-all duration-300 ${isSelected
                 ? 'bg-indigo-600 shadow-lg shadow-indigo-500/30 scale-105'
                 : 'bg-zinc-900/50 hover:bg-zinc-800 border border-zinc-800 hover:border-zinc-700'
-            }`}
+              }`}
           >
             {/* Day name */}
             <span
-              className={`text-xs font-medium ${
-                isSelected ? 'text-indigo-100' : 'text-zinc-400'
-              }`}
+              className={`text-xs font-medium ${isSelected ? 'text-indigo-100' : 'text-zinc-400'
+                }`}
             >
               {getDayName(date)}
             </span>
 
             {/* Day number */}
             <span
-              className={`text-lg font-bold ${
-                isSelected
+              className={`text-lg font-bold ${isSelected
                   ? 'text-white'
                   : isTodayDate
-                  ? 'text-indigo-400'
-                  : 'text-zinc-200'
-              }`}
+                    ? 'text-indigo-400'
+                    : 'text-zinc-200'
+                }`}
             >
               {getDayNumber(date)}
             </span>
@@ -65,16 +62,14 @@ const WeekCalendar = ({ dates, completions, onDateSelect }) => {
                   {[...Array(Math.min(completionCount, 5))].map((_, i) => (
                     <div
                       key={i}
-                      className={`w-1.5 h-1.5 rounded-full ${
-                        isSelected ? 'bg-white' : 'bg-emerald-400'
-                      }`}
+                      className={`w-1.5 h-1.5 rounded-full ${isSelected ? 'bg-white' : 'bg-emerald-400'
+                        }`}
                     />
                   ))}
                   {completionCount > 5 && (
                     <span
-                      className={`text-xs font-medium ${
-                        isSelected ? 'text-white' : 'text-emerald-400'
-                      }`}
+                      className={`text-xs font-medium ${isSelected ? 'text-white' : 'text-emerald-400'
+                        }`}
                     >
                       +{completionCount - 5}
                     </span>
@@ -82,9 +77,8 @@ const WeekCalendar = ({ dates, completions, onDateSelect }) => {
                 </>
               ) : (
                 <div
-                  className={`w-1.5 h-1.5 rounded-full ${
-                    isSelected ? 'bg-indigo-300' : 'bg-zinc-700'
-                  }`}
+                  className={`w-1.5 h-1.5 rounded-full ${isSelected ? 'bg-indigo-300' : 'bg-zinc-700'
+                    }`}
                 />
               )}
             </div>

@@ -157,11 +157,10 @@ const Habits = () => {
         <div className="flex items-center gap-2 p-1 bg-zinc-900/50 rounded-xl border border-zinc-800">
           <button
             onClick={() => setActiveTab('active')}
-            className={`px-4 py-2 rounded-lg transition-all ${
-              activeTab === 'active'
+            className={`px-4 py-2 rounded-lg transition-all ${activeTab === 'active'
                 ? 'bg-indigo-600 text-white shadow-lg shadow-indigo-500/30'
                 : 'text-zinc-400 hover:text-zinc-200'
-            }`}
+              }`}
           >
             Active
             <span className="ml-2 text-xs">
@@ -170,11 +169,10 @@ const Habits = () => {
           </button>
           <button
             onClick={() => setActiveTab('archived')}
-            className={`px-4 py-2 rounded-lg transition-all ${
-              activeTab === 'archived'
+            className={`px-4 py-2 rounded-lg transition-all ${activeTab === 'archived'
                 ? 'bg-indigo-600 text-white shadow-lg shadow-indigo-500/30'
                 : 'text-zinc-400 hover:text-zinc-200'
-            }`}
+              }`}
           >
             Archived
             <span className="ml-2 text-xs">
@@ -183,11 +181,10 @@ const Habits = () => {
           </button>
           <button
             onClick={() => setActiveTab('all')}
-            className={`px-4 py-2 rounded-lg transition-all ${
-              activeTab === 'all'
+            className={`px-4 py-2 rounded-lg transition-all ${activeTab === 'all'
                 ? 'bg-indigo-600 text-white shadow-lg shadow-indigo-500/30'
                 : 'text-zinc-400 hover:text-zinc-200'
-            }`}
+              }`}
           >
             All
             <span className="ml-2 text-xs">({habits.length})</span>
@@ -201,11 +198,10 @@ const Habits = () => {
               setBulkSelectMode(!bulkSelectMode);
               setSelectedHabits([]);
             }}
-            className={`flex items-center gap-2 px-4 py-2 rounded-xl transition-all ${
-              bulkSelectMode
+            className={`flex items-center gap-2 px-4 py-2 rounded-xl transition-all ${bulkSelectMode
                 ? 'bg-indigo-600 text-white'
                 : 'bg-zinc-800 hover:bg-zinc-700 text-zinc-300 border border-zinc-700'
-            }`}
+              }`}
           >
             <FiCheck size={18} />
             <span>Select</span>
@@ -317,22 +313,20 @@ const Habits = () => {
             return (
               <div
                 key={habit.id}
-                className={`group relative bg-zinc-900/50 backdrop-blur-sm rounded-xl p-6 border transition-all ${
-                  bulkSelectMode && isSelected
+                className={`group relative bg-zinc-900/50 backdrop-blur-sm rounded-xl p-6 border transition-all ${bulkSelectMode && isSelected
                     ? 'border-indigo-500 bg-indigo-500/10'
                     : 'border-zinc-800 hover:border-zinc-700'
-                } hover:shadow-lg hover:shadow-indigo-500/5`}
+                  } hover:shadow-lg hover:shadow-indigo-500/5`}
               >
                 {/* Bulk Select Checkbox */}
                 {bulkSelectMode && (
                   <div className="absolute top-4 right-4 z-10">
                     <button
                       onClick={() => handleBulkToggle(habit.id)}
-                      className={`w-6 h-6 rounded-md border-2 flex items-center justify-center transition-all ${
-                        isSelected
+                      className={`w-6 h-6 rounded-md border-2 flex items-center justify-center transition-all ${isSelected
                           ? 'bg-indigo-600 border-indigo-600'
                           : 'border-zinc-600 hover:border-indigo-500'
-                      }`}
+                        }`}
                     >
                       {isSelected && <FiCheck className="text-white" size={16} />}
                     </button>

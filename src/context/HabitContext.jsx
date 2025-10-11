@@ -160,7 +160,7 @@ export const HabitProvider = ({ children }) => {
     for (let i = 0; i < habitCompletions.length; i++) {
       const compDate = new Date(habitCompletions[i].date);
       compDate.setHours(0, 0, 0, 0);
-      
+
       const expectedDate = new Date(today);
       expectedDate.setDate(today.getDate() - i);
       expectedDate.setHours(0, 0, 0, 0);
@@ -227,7 +227,7 @@ export const HabitProvider = ({ children }) => {
     const habit = habits.find((h) => h.id === habitId);
     const daysSinceCreated = Math.floor(
       (new Date() - new Date(habit?.createdDate || new Date())) /
-        (1000 * 60 * 60 * 24)
+      (1000 * 60 * 60 * 24)
     );
 
     return {

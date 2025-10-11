@@ -17,7 +17,7 @@ const AddHabitModal = ({ isOpen, onClose, onSave }) => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    
+
     if (!formData.name.trim()) {
       toast.error('Please enter a habit name');
       return;
@@ -112,11 +112,10 @@ const AddHabitModal = ({ isOpen, onClose, onSave }) => {
                     key={cat.id}
                     type="button"
                     onClick={() => handleChange('category', cat.id)}
-                    className={`p-4 rounded-xl border-2 transition-all ${
-                      formData.category === cat.id
+                    className={`p-4 rounded-xl border-2 transition-all ${formData.category === cat.id
                         ? 'border-indigo-500 bg-indigo-500/10'
                         : 'border-zinc-700 bg-zinc-800/30 hover:border-zinc-600'
-                    }`}
+                      }`}
                   >
                     <div className="text-2xl mb-2">{cat.icon}</div>
                     <div className="text-sm font-medium text-zinc-200">{cat.name}</div>
@@ -136,11 +135,10 @@ const AddHabitModal = ({ isOpen, onClose, onSave }) => {
                     key={color}
                     type="button"
                     onClick={() => handleChange('color', color)}
-                    className={`w-12 h-12 rounded-xl transition-all ${
-                      formData.color === color
+                    className={`w-12 h-12 rounded-xl transition-all ${formData.color === color
                         ? 'ring-2 ring-white ring-offset-2 ring-offset-zinc-900 scale-110'
                         : 'hover:scale-105'
-                    }`}
+                      }`}
                     style={{ backgroundColor: color }}
                   />
                 ))}
@@ -158,11 +156,10 @@ const AddHabitModal = ({ isOpen, onClose, onSave }) => {
                     key={icon}
                     type="button"
                     onClick={() => handleChange('icon', icon)}
-                    className={`w-12 h-12 rounded-xl text-2xl transition-all ${
-                      formData.icon === icon
+                    className={`w-12 h-12 rounded-xl text-2xl transition-all ${formData.icon === icon
                         ? 'bg-indigo-500/20 ring-2 ring-indigo-500 scale-110'
                         : 'bg-zinc-800/30 hover:bg-zinc-700'
-                    }`}
+                      }`}
                   >
                     {icon}
                   </button>
@@ -189,11 +186,10 @@ const AddHabitModal = ({ isOpen, onClose, onSave }) => {
                       handleChange('frequency', freq.value);
                       handleChange('target', freq.target);
                     }}
-                    className={`p-3 rounded-xl border-2 transition-all ${
-                      formData.frequency === freq.value
+                    className={`p-3 rounded-xl border-2 transition-all ${formData.frequency === freq.value
                         ? 'border-indigo-500 bg-indigo-500/10'
                         : 'border-zinc-700 bg-zinc-800/30 hover:border-zinc-600'
-                    }`}
+                      }`}
                   >
                     <div className="text-sm font-medium text-zinc-200">
                       {freq.label}

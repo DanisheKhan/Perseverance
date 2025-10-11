@@ -63,7 +63,7 @@ const Dashboard = () => {
   const handleToggleHabit = (habitId) => {
     const isComplete = isHabitCompleteForDate(habitId, selectedDate);
     markComplete(habitId, selectedDate);
-    
+
     const habit = habits.find((h) => h.id === habitId);
     if (!isComplete) {
       toast.success(`Great job! ${habit.name} completed! 🎉`, {

@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 
 const ProgressRing = ({ progress, size = 120, strokeWidth = 8 }) => {
   const [animatedProgress, setAnimatedProgress] = useState(0);
-  
+
   const radius = (size - strokeWidth) / 2;
   const circumference = radius * 2 * Math.PI;
   const offset = circumference - (animatedProgress / 100) * circumference;

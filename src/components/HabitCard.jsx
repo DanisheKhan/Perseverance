@@ -97,25 +97,23 @@ const HabitCard = ({ habit, isCompleted, onToggle, streak, onAddNote }) => {
           {/* Checkbox */}
           <button
             onClick={handleToggle}
-            className={`relative w-12 h-12 rounded-xl flex items-center justify-center transition-all duration-300 ${
-              isCompleted
+            className={`relative w-12 h-12 rounded-xl flex items-center justify-center transition-all duration-300 ${isCompleted
                 ? 'bg-gradient-to-br shadow-lg'
                 : 'bg-zinc-800 hover:bg-zinc-700'
-            } ${isAnimating ? 'scale-95' : 'scale-100'}`}
+              } ${isAnimating ? 'scale-95' : 'scale-100'}`}
             style={
               isCompleted
                 ? {
-                    backgroundImage: `linear-gradient(135deg, ${habit.color}, ${habit.color}dd)`,
-                    boxShadow: `0 8px 16px ${habit.color}40`,
-                  }
+                  backgroundImage: `linear-gradient(135deg, ${habit.color}, ${habit.color}dd)`,
+                  boxShadow: `0 8px 16px ${habit.color}40`,
+                }
                 : {}
             }
           >
             {isCompleted && (
               <FiCheck
-                className={`text-white transition-all duration-300 ${
-                  isAnimating ? 'scale-0 rotate-180' : 'scale-100 rotate-0'
-                }`}
+                className={`text-white transition-all duration-300 ${isAnimating ? 'scale-0 rotate-180' : 'scale-100 rotate-0'
+                  }`}
                 size={24}
                 strokeWidth={3}
               />

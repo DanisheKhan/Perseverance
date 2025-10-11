@@ -3,35 +3,35 @@
  */
 export const colors = {
   bg: {
-    primary: '#0A0A0B',
-    secondary: '#111113',
-    tertiary: '#1A1A1D',
+    primary: "#0A0A0B",
+    secondary: "#111113",
+    tertiary: "#1A1A1D",
   },
   accent: {
-    primary: '#6366F1',
-    secondary: '#818CF8',
+    primary: "#6366F1",
+    secondary: "#818CF8",
   },
   status: {
-    success: '#10B981',
-    warning: '#F59E0B',
-    error: '#EF4444',
+    success: "#10B981",
+    warning: "#F59E0B",
+    error: "#EF4444",
   },
   text: {
-    primary: '#FAFAFA',
-    secondary: '#A1A1AA',
-    tertiary: '#71717A',
+    primary: "#FAFAFA",
+    secondary: "#A1A1AA",
+    tertiary: "#71717A",
   },
-  border: '#27272A',
+  border: "#27272A",
 };
 
 /**
  * Format date to readable string
  */
 export const formatDate = (date) => {
-  return new Date(date).toLocaleDateString('en-US', {
-    month: 'short',
-    day: 'numeric',
-    year: 'numeric',
+  return new Date(date).toLocaleDateString("en-US", {
+    month: "short",
+    day: "numeric",
+    year: "numeric",
   });
 };
 
@@ -40,22 +40,22 @@ export const formatDate = (date) => {
  */
 export const calculateStreak = (completions) => {
   if (!completions || completions.length === 0) return 0;
-  
+
   let streak = 0;
   const today = new Date().setHours(0, 0, 0, 0);
   const sortedDates = completions
-    .map(d => new Date(d).setHours(0, 0, 0, 0))
+    .map((d) => new Date(d).setHours(0, 0, 0, 0))
     .sort((a, b) => b - a);
-  
+
   for (let i = 0; i < sortedDates.length; i++) {
-    const expectedDate = today - (i * 24 * 60 * 60 * 1000);
+    const expectedDate = today - i * 24 * 60 * 60 * 1000;
     if (sortedDates[i] === expectedDate) {
       streak++;
     } else {
       break;
     }
   }
-  
+
   return streak;
 };
 
@@ -71,14 +71,14 @@ export const calculateSuccessRate = (completions, totalDays) => {
  * Get current date in YYYY-MM-DD format
  */
 export const getCurrentDate = () => {
-  return new Date().toISOString().split('T')[0];
+  return new Date().toISOString().split("T")[0];
 };
 
 /**
  * Get day name from date
  */
 export const getDayName = (date) => {
-  return new Date(date).toLocaleDateString('en-US', { weekday: 'short' });
+  return new Date(date).toLocaleDateString("en-US", { weekday: "short" });
 };
 
 /**
@@ -87,13 +87,13 @@ export const getDayName = (date) => {
 export const getWeekDates = () => {
   const dates = [];
   const today = new Date();
-  
+
   for (let i = 6; i >= 0; i--) {
     const date = new Date(today);
     date.setDate(today.getDate() - i);
-    dates.push(date.toISOString().split('T')[0]);
+    dates.push(date.toISOString().split("T")[0]);
   }
-  
+
   return dates;
 };
 
@@ -118,13 +118,13 @@ export const generateId = () => {
 export const getDateRange = (days) => {
   const dates = [];
   const today = new Date();
-  
+
   for (let i = days - 1; i >= 0; i--) {
     const date = new Date(today);
     date.setDate(today.getDate() - i);
-    dates.push(date.toISOString().split('T')[0]);
+    dates.push(date.toISOString().split("T")[0]);
   }
-  
+
   return dates;
 };
 
@@ -149,11 +149,12 @@ export const getRelativeTime = (date) => {
   const past = new Date(date);
   const diffInSeconds = Math.floor((now - past) / 1000);
 
-  if (diffInSeconds < 60) return 'just now';
+  if (diffInSeconds < 60) return "just now";
   if (diffInSeconds < 3600) return `${Math.floor(diffInSeconds / 60)}m ago`;
   if (diffInSeconds < 86400) return `${Math.floor(diffInSeconds / 3600)}h ago`;
-  if (diffInSeconds < 604800) return `${Math.floor(diffInSeconds / 86400)}d ago`;
-  
+  if (diffInSeconds < 604800)
+    return `${Math.floor(diffInSeconds / 86400)}d ago`;
+
   return formatDate(date);
 };
 
@@ -161,7 +162,7 @@ export const getRelativeTime = (date) => {
  * Get month name from date
  */
 export const getMonthName = (date) => {
-  return new Date(date).toLocaleDateString('en-US', { month: 'long' });
+  return new Date(date).toLocaleDateString("en-US", { month: "long" });
 };
 
 /**

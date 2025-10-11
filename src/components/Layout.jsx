@@ -24,7 +24,7 @@ const Layout = () => {
             {/* Logo */}
             <div className="flex items-center">
               <h1 className="text-2xl font-bold tracking-tight">
-                <span 
+                <span
                   className="font-['Playfair_Display'] bg-gradient-to-r from-[var(--accent-primary)] to-[var(--accent-secondary)] bg-clip-text text-transparent"
                 >
                   Perseverance
@@ -37,7 +37,7 @@ const Layout = () => {
               {navItems.map((item) => {
                 const Icon = item.icon;
                 const active = isActive(item.path);
-                
+
                 return (
                   <Link
                     key={item.path}
@@ -45,8 +45,8 @@ const Layout = () => {
                     className={`
                       flex items-center px-4 py-2 rounded-lg text-sm font-medium
                       transition-all duration-200
-                      ${active 
-                        ? 'bg-[var(--accent-primary)] text-white shadow-[0_10px_30px_var(--shadow)]' 
+                      ${active
+                        ? 'bg-[var(--accent-primary)] text-white shadow-[0_10px_30px_var(--shadow)]'
                         : 'text-[var(--text-secondary)] hover:text-[var(--text-primary)] hover:bg-[var(--bg-secondary)]'
                       }
                     `}
@@ -74,7 +74,7 @@ const Layout = () => {
           {navItems.map((item) => {
             const Icon = item.icon;
             const active = isActive(item.path);
-            
+
             return (
               <Link
                 key={item.path}
@@ -82,8 +82,8 @@ const Layout = () => {
                 className={`
                   flex flex-col items-center justify-center flex-1 h-full
                   transition-colors duration-200
-                  ${active 
-                    ? 'text-[var(--accent-primary)]' 
+                  ${active
+                    ? 'text-[var(--accent-primary)]'
                     : 'text-[var(--text-secondary)]'
                   }
                 `}

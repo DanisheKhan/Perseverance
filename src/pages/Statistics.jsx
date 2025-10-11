@@ -38,9 +38,9 @@ const Statistics = () => {
   const stats = useMemo(() => {
     const totalDaysTracked = completions.length > 0
       ? Math.floor(
-          (new Date() - new Date(Math.min(...completions.map((c) => new Date(c.date))))) /
-            (1000 * 60 * 60 * 24)
-        ) + 1
+        (new Date() - new Date(Math.min(...completions.map((c) => new Date(c.date))))) /
+        (1000 * 60 * 60 * 24)
+      ) + 1
       : 0;
 
     const totalCompletions = completions.filter((c) => c.completed).length;
@@ -97,12 +97,12 @@ const Statistics = () => {
   // Category distribution
   const categoryData = useMemo(() => {
     const categoryMap = new Map();
-    
+
     habits.forEach((habit) => {
       const habitCompletions = completions.filter(
         (c) => c.habitId === habit.id && c.completed
       ).length;
-      
+
       const current = categoryMap.get(habit.category) || 0;
       categoryMap.set(habit.category, current + habitCompletions);
     });
