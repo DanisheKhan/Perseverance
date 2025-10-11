@@ -131,10 +131,9 @@ const DayDetailModal = ({ date, onClose }) => {
                   onClick={() => handleUpdateMood(moodOption.value)}
                   className={`
                     flex-1 p-3 rounded-xl transition-all
-                    ${
-                      mood === moodOption.value
-                        ? 'bg-indigo-500 ring-2 ring-indigo-400'
-                        : 'bg-zinc-800 hover:bg-zinc-700'
+                    ${mood === moodOption.value
+                      ? 'bg-indigo-500 ring-2 ring-indigo-400'
+                      : 'bg-zinc-800 hover:bg-zinc-700'
                     }
                   `}
                 >
@@ -166,10 +165,9 @@ const DayDetailModal = ({ date, onClose }) => {
                       onClick={() => handleToggleComplete(habit.id)}
                       className={`
                         w-6 h-6 rounded-lg border-2 flex items-center justify-center flex-shrink-0 transition-all mt-0.5
-                        ${
-                          isCompleted
-                            ? 'bg-emerald-500 border-emerald-500'
-                            : 'border-zinc-600 hover:border-zinc-500'
+                        ${isCompleted
+                          ? 'bg-emerald-500 border-emerald-500'
+                          : 'border-zinc-600 hover:border-zinc-500'
                         }
                       `}
                     >
@@ -187,11 +185,10 @@ const DayDetailModal = ({ date, onClose }) => {
                         </div>
                         <div className="flex-1">
                           <h4
-                            className={`font-medium ${
-                              isCompleted
+                            className={`font-medium ${isCompleted
                                 ? 'text-zinc-100'
                                 : 'text-zinc-300'
-                            }`}
+                              }`}
                           >
                             {habit.name}
                           </h4>

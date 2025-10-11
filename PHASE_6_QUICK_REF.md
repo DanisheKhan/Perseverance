@@ -1,6 +1,7 @@
 # 📅 PHASE 6: Calendar & History - Quick Reference
 
 ## 🚀 Quick Access
+
 **URL:** http://localhost:5173/calendar
 **Nav:** Click "Calendar" in navigation bar (4th item)
 
@@ -9,6 +10,7 @@
 ## ⚡ Quick Actions
 
 ### View Calendar
+
 ```
 1. Click "Calendar" in nav
 2. See current month grid
@@ -18,6 +20,7 @@
 ```
 
 ### Open Day Details
+
 ```
 1. Click any past date
 2. Modal opens
@@ -28,6 +31,7 @@
 ```
 
 ### Navigate Months
+
 ```
 ◀ Previous month
 ▶ Next month
@@ -35,6 +39,7 @@
 ```
 
 ### Filter by Habit
+
 ```
 1. Click dropdown (top-right)
 2. Select habit
@@ -47,6 +52,7 @@
 ## 🎯 Key Features
 
 ### Calendar Grid
+
 - **Size:** 42 days (6 weeks × 7 days)
 - **Today:** Indigo ring
 - **Perfect Day:** Amber ring + ✨
@@ -54,6 +60,7 @@
 - **Future:** Grayed out, not clickable
 
 ### Day Detail Modal
+
 - **Habits:** All active habits for date
 - **Toggle:** ✓ mark complete/incomplete
 - **Notes:** Add/edit/delete per habit
@@ -61,12 +68,14 @@
 - **Stats:** X of Y habits (Z%)
 
 ### Month Statistics
+
 1. **Completion Rate** - % with progress bar
 2. **Total Completions** - Count of completed
 3. **Streaks Started** - New streaks this month
 4. **Perfect Days** - 100% completion days
 
 ### Perfect Days
+
 - **Definition:** All habits completed
 - **Visual:** Amber ring + sparkle icon
 - **Listed:** Below calendar with dates
@@ -76,25 +85,25 @@
 
 ## 📊 Visual Indicators
 
-| Indicator | Meaning |
-|-----------|---------|
-| 🔷 Indigo Ring | Today |
-| ✨ Amber Ring | Perfect Day (100%) |
-| ●●● Dots | Completed habits |
-| Dimmed dates | Other months |
-| +2 more | Overflow indicator |
+| Indicator      | Meaning            |
+| -------------- | ------------------ |
+| 🔷 Indigo Ring | Today              |
+| ✨ Amber Ring  | Perfect Day (100%) |
+| ●●● Dots       | Completed habits   |
+| Dimmed dates   | Other months       |
+| +2 more        | Overflow indicator |
 
 ---
 
 ## 😊 Mood Tracker
 
-| Emoji | Label | Value | When to Use |
-|-------|-------|-------|-------------|
-| 😊 | Great | 5 | Excellent day |
-| 🙂 | Good | 4 | Above average |
-| 😐 | Okay | 3 | Normal day |
-| 😕 | Bad | 2 | Challenging |
-| 😢 | Awful | 1 | Very difficult |
+| Emoji | Label | Value | When to Use    |
+| ----- | ----- | ----- | -------------- |
+| 😊    | Great | 5     | Excellent day  |
+| 🙂    | Good  | 4     | Above average  |
+| 😐    | Okay  | 3     | Normal day     |
+| 😕    | Bad   | 2     | Challenging    |
+| 😢    | Awful | 1     | Very difficult |
 
 **Tip:** Track consistently to find patterns!
 
@@ -103,11 +112,13 @@
 ## 📝 Notes Guide
 
 ### Good Notes:
+
 ✅ "Ran 5km in park - felt amazing!"
 ✅ "Finished chapter 3 of book"
 ✅ "10-minute meditation, deep breathing"
 
 ### Poor Notes:
+
 ❌ "Done"
 ❌ "Yes"
 ❌ "✓"
@@ -148,16 +159,19 @@ All Habits (default)
 ## 📱 Responsive Sizes
 
 ### Mobile (< 640px)
+
 - Compact cells
 - Stacked stats
 - Full-width modal
 
 ### Tablet (640-1024px)
+
 - Medium cells
 - 2-col stats
 - Medium modal
 
 ### Desktop (> 1024px)
+
 - Large cells
 - 4-col stats
 - Optimal modal
@@ -216,16 +230,19 @@ Enter : Save changes
 ## 🐛 Troubleshooting
 
 ### Date Won't Open?
+
 - Only past/today clickable
 - Future dates disabled
 - Try refreshing page
 
 ### Stats Look Wrong?
+
 - Check "All Habits" selected
 - Refresh the page
 - Verify completions
 
 ### Dots Not Showing?
+
 - Check habit filter
 - Verify completions exist
 - Try "All Habits"
@@ -248,18 +265,22 @@ Enter : Save changes
 ## 🎊 Perfect Day Goals
 
 ### Beginner:
+
 - 1-2 perfect days per week
 - 5-8 per month
 
 ### Intermediate:
+
 - 3-4 perfect days per week
 - 12-16 per month
 
 ### Advanced:
+
 - 5-6 perfect days per week
 - 20-25 per month
 
 ### Expert:
+
 - Daily perfect days
 - 28-30 per month
 
@@ -299,6 +320,7 @@ Settings   →  /settings
 ## 🎯 Common Tasks
 
 ### Edit Yesterday:
+
 ```
 1. Click ◀ if needed
 2. Click yesterday's date
@@ -308,6 +330,7 @@ Settings   →  /settings
 ```
 
 ### Find Perfect Days:
+
 ```
 1. Look for ✨ sparkles
 2. Check list below calendar
@@ -315,6 +338,7 @@ Settings   →  /settings
 ```
 
 ### Check Month Progress:
+
 ```
 1. View 4 stat cards
 2. Check completion rate
@@ -323,6 +347,7 @@ Settings   →  /settings
 ```
 
 ### Track Mood Patterns:
+
 ```
 1. Set mood daily
 2. Review over weeks
@@ -345,6 +370,7 @@ Settings   →  /settings
 ## 🎨 UI Elements
 
 ### Calendar Cell:
+
 ```
 ┌──────┐
 │  15  │ ← Day number
@@ -354,6 +380,7 @@ Settings   →  /settings
 ```
 
 ### Modal Layout:
+
 ```
 ┌─────────────────────┐
 │ Date        [X]     │ ← Header
@@ -374,6 +401,7 @@ Settings   →  /settings
 ## 🌟 Feature Highlights
 
 ### Most Used:
+
 1. Day detail modal
 2. Note-taking
 3. Perfect day tracking
@@ -381,6 +409,7 @@ Settings   →  /settings
 5. Habit filtering
 
 ### Most Loved:
+
 1. Perfect day sparkles ✨
 2. Mood tracking 😊
 3. Easy editing
@@ -392,6 +421,7 @@ Settings   →  /settings
 ## 📈 Success Indicators
 
 ### Good Usage:
+
 - ✅ Daily calendar checks
 - ✅ Regular note-adding
 - ✅ Consistent mood tracking
@@ -399,6 +429,7 @@ Settings   →  /settings
 - ✅ Honest editing
 
 ### Great Results:
+
 - 📈 Increasing completion rate
 - 📈 More perfect days
 - 📈 Longer streaks

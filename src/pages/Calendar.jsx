@@ -263,16 +263,14 @@ const Calendar = () => {
                   disabled={isFuture}
                   className={`
                     relative aspect-square p-2 rounded-lg transition-all
-                    ${
-                      day.isCurrentMonth
-                        ? 'bg-zinc-800/50'
-                        : 'bg-zinc-900/30 opacity-40'
+                    ${day.isCurrentMonth
+                      ? 'bg-zinc-800/50'
+                      : 'bg-zinc-900/30 opacity-40'
                     }
                     ${isTodayDate ? 'ring-2 ring-indigo-500' : ''}
-                    ${
-                      !isFuture && day.isCurrentMonth
-                        ? 'hover:bg-zinc-700 cursor-pointer'
-                        : ''
+                    ${!isFuture && day.isCurrentMonth
+                      ? 'hover:bg-zinc-700 cursor-pointer'
+                      : ''
                     }
                     ${isFuture ? 'cursor-not-allowed opacity-30' : ''}
                     ${hasSpecialDay ? 'ring-2 ring-amber-500' : ''}
