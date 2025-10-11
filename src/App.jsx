@@ -169,7 +169,7 @@ function App() {
       </Suspense>
     </ErrorBoundary>
   );
-  
+
 }
 
 export default App;
