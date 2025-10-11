@@ -1,6 +1,6 @@
 import { useMemo } from 'react';
 import { useHabits } from '../context/HabitContext';
-import { FiBrain, FiTrendingUp, FiTrendingDown, FiAlertCircle, FiZap, FiClock } from 'react-icons/fi';
+// import { FiBrain, FiTrendingUp, FiTrendingDown, FiAlertCircle, FiZap, FiClock } from 'react-icons/fi';
 import { HiSparkles } from 'react-icons/hi';
 
 const SmartInsights = () => {
