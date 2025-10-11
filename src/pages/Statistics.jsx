@@ -257,30 +257,31 @@ const Statistics = () => {
   };
 
   return (
-    <div className="space-y-8 pb-24">
+    <div className="space-y-6 md:space-y-8 pb-24 lg:pb-8">
       {/* Header */}
-      <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
+      <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 md:gap-4">
         <div>
-          <h1 className="text-3xl font-bold text-zinc-100 flex items-center gap-3">
+          <h1 className="text-2xl sm:text-3xl font-bold text-zinc-100 flex items-center gap-2 md:gap-3">
             <FiBarChart2 className="text-indigo-400" />
             Statistics & Analytics
           </h1>
-          <p className="text-zinc-400 mt-1">
+          <p className="text-zinc-400 mt-1 text-sm md:text-base">
             Track your progress and gain insights
           </p>
         </div>
-        <div className="flex items-center gap-3">
+        <div className="flex items-center gap-2 md:gap-3 w-full sm:w-auto flex-wrap">
           <button
             onClick={handleExportCSV}
-            className="flex items-center gap-2 px-4 py-2.5 bg-zinc-800 hover:bg-zinc-700 text-zinc-200 rounded-xl transition-colors border border-zinc-700"
+            className="flex items-center gap-2 px-3 md:px-4 py-2 md:py-2.5 bg-zinc-800 hover:bg-zinc-700 text-zinc-200 rounded-lg md:rounded-xl transition-colors border border-zinc-700 text-sm md:text-base"
           >
             <FiDownload size={18} />
-            <span>Export CSV</span>
+            <span className="hidden sm:inline">Export CSV</span>
+            <span className="sm:hidden">Export</span>
           </button>
           <select
             value={timeRange}
             onChange={(e) => setTimeRange(e.target.value)}
-            className="px-4 py-2.5 bg-zinc-800 border border-zinc-700 rounded-xl text-zinc-100 focus:outline-none focus:ring-2 focus:ring-indigo-500"
+            className="px-3 md:px-4 py-2 md:py-2.5 bg-zinc-800 border border-zinc-700 rounded-lg md:rounded-xl text-zinc-100 focus:outline-none focus:ring-2 focus:ring-indigo-500 text-sm md:text-base flex-1 sm:flex-initial"
           >
             <option value="7">Last 7 Days</option>
             <option value="30">Last 30 Days</option>
@@ -291,64 +292,64 @@ const Statistics = () => {
       </div>
 
       {/* Key Metrics */}
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
-        <div className="bg-zinc-900/50 backdrop-blur-sm rounded-xl p-6 border border-zinc-800">
-          <div className="flex items-start justify-between mb-4">
-            <div className="w-12 h-12 rounded-xl bg-indigo-500/10 flex items-center justify-center">
-              <FiCalendar className="text-indigo-400" size={24} />
+      <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 md:gap-4">
+        <div className="bg-zinc-900/50 backdrop-blur-sm rounded-lg md:rounded-xl p-4 md:p-6 border border-zinc-800">
+          <div className="flex items-start justify-between mb-3 md:mb-4">
+            <div className="w-10 h-10 md:w-12 md:h-12 rounded-lg md:rounded-xl bg-indigo-500/10 flex items-center justify-center">
+              <FiCalendar className="text-indigo-400" size={20} />
             </div>
-            <span className="text-3xl font-bold text-zinc-100">
+            <span className="text-2xl md:text-3xl font-bold text-zinc-100">
               {stats.totalDaysTracked}
             </span>
           </div>
-          <h3 className="text-sm text-zinc-400">Days Tracked</h3>
+          <h3 className="text-xs md:text-sm text-zinc-400">Days Tracked</h3>
         </div>
 
-        <div className="bg-zinc-900/50 backdrop-blur-sm rounded-xl p-6 border border-zinc-800">
-          <div className="flex items-start justify-between mb-4">
-            <div className="w-12 h-12 rounded-xl bg-emerald-500/10 flex items-center justify-center">
-              <FiTarget className="text-emerald-400" size={24} />
+        <div className="bg-zinc-900/50 backdrop-blur-sm rounded-lg md:rounded-xl p-4 md:p-6 border border-zinc-800">
+          <div className="flex items-start justify-between mb-3 md:mb-4">
+            <div className="w-10 h-10 md:w-12 md:h-12 rounded-lg md:rounded-xl bg-emerald-500/10 flex items-center justify-center">
+              <FiTarget className="text-emerald-400" size={20} />
             </div>
-            <span className="text-3xl font-bold text-zinc-100">
+            <span className="text-2xl md:text-3xl font-bold text-zinc-100">
               {stats.overallRate}%
             </span>
           </div>
-          <h3 className="text-sm text-zinc-400">Completion Rate</h3>
+          <h3 className="text-xs md:text-sm text-zinc-400">Completion Rate</h3>
         </div>
 
-        <div className="bg-zinc-900/50 backdrop-blur-sm rounded-xl p-6 border border-zinc-800">
-          <div className="flex items-start justify-between mb-4">
-            <div className="w-12 h-12 rounded-xl bg-amber-500/10 flex items-center justify-center">
-              <HiSparkles className="text-amber-400" size={24} />
+        <div className="bg-zinc-900/50 backdrop-blur-sm rounded-lg md:rounded-xl p-4 md:p-6 border border-zinc-800">
+          <div className="flex items-start justify-between mb-3 md:mb-4">
+            <div className="w-10 h-10 md:w-12 md:h-12 rounded-lg md:rounded-xl bg-amber-500/10 flex items-center justify-center">
+              <HiSparkles className="text-amber-400" size={20} />
             </div>
-            <span className="text-3xl font-bold text-zinc-100">
+            <span className="text-2xl md:text-3xl font-bold text-zinc-100">
               {stats.totalCompletions}
             </span>
           </div>
-          <h3 className="text-sm text-zinc-400">Total Completions</h3>
+          <h3 className="text-xs md:text-sm text-zinc-400">Total Completions</h3>
         </div>
 
-        <div className="bg-zinc-900/50 backdrop-blur-sm rounded-xl p-6 border border-zinc-800">
-          <div className="flex items-start justify-between mb-4">
-            <div className="w-12 h-12 rounded-xl bg-purple-500/10 flex items-center justify-center">
-              <FiTrendingUp className="text-purple-400" size={24} />
+        <div className="bg-zinc-900/50 backdrop-blur-sm rounded-lg md:rounded-xl p-4 md:p-6 border border-zinc-800">
+          <div className="flex items-start justify-between mb-3 md:mb-4">
+            <div className="w-10 h-10 md:w-12 md:h-12 rounded-lg md:rounded-xl bg-purple-500/10 flex items-center justify-center">
+              <FiTrendingUp className="text-purple-400" size={20} />
             </div>
-            <span className="text-3xl font-bold text-zinc-100">
+            <span className="text-2xl md:text-3xl font-bold text-zinc-100">
               {stats.averageDaily}
             </span>
           </div>
-          <h3 className="text-sm text-zinc-400">Avg Daily</h3>
+          <h3 className="text-xs md:text-sm text-zinc-400">Avg Daily</h3>
         </div>
       </div>
 
       {/* Charts Row */}
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+      <div className="grid grid-cols-1 xl:grid-cols-2 gap-4 md:gap-6">
         {/* Completion Trend */}
-        <div className="bg-zinc-900/50 backdrop-blur-sm rounded-xl p-6 border border-zinc-800">
-          <h2 className="text-xl font-semibold text-zinc-100 mb-6">
+        <div className="bg-zinc-900/50 backdrop-blur-sm rounded-lg md:rounded-xl p-4 md:p-6 border border-zinc-800">
+          <h2 className="text-lg md:text-xl font-semibold text-zinc-100 mb-4 md:mb-6">
             Completion Trend
           </h2>
-          <ResponsiveContainer width="100%" height={300}>
+          <ResponsiveContainer width="100%" height={250} className="md:h-[300px]">
             <AreaChart data={trendData}>
               <defs>
                 <linearGradient id="colorCompletions" x1="0" y1="0" x2="0" y2="1">
@@ -384,11 +385,11 @@ const Statistics = () => {
         </div>
 
         {/* Weekly Performance */}
-        <div className="bg-zinc-900/50 backdrop-blur-sm rounded-xl p-6 border border-zinc-800">
-          <h2 className="text-xl font-semibold text-zinc-100 mb-6">
+        <div className="bg-zinc-900/50 backdrop-blur-sm rounded-lg md:rounded-xl p-4 md:p-6 border border-zinc-800">
+          <h2 className="text-lg md:text-xl font-semibold text-zinc-100 mb-4 md:mb-6">
             Weekly Comparison
           </h2>
-          <ResponsiveContainer width="100%" height={300}>
+          <ResponsiveContainer width="100%" height={250} className="md:h-[300px]">
             <BarChart data={weeklyData}>
               <CartesianGrid strokeDasharray="3 3" stroke="#27272A" />
               <XAxis dataKey="week" stroke="#71717A" style={{ fontSize: '12px' }} />
@@ -408,14 +409,14 @@ const Statistics = () => {
       </div>
 
       {/* Category Distribution & Personal Records */}
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+      <div className="grid grid-cols-1 xl:grid-cols-2 gap-4 md:gap-6">
         {/* Category Pie Chart */}
-        <div className="bg-zinc-900/50 backdrop-blur-sm rounded-xl p-6 border border-zinc-800">
-          <h2 className="text-xl font-semibold text-zinc-100 mb-6">
+        <div className="bg-zinc-900/50 backdrop-blur-sm rounded-lg md:rounded-xl p-4 md:p-6 border border-zinc-800">
+          <h2 className="text-lg md:text-xl font-semibold text-zinc-100 mb-4 md:mb-6">
             Completions by Category
           </h2>
           {categoryData.length > 0 ? (
-            <ResponsiveContainer width="100%" height={300}>
+            <ResponsiveContainer width="100%" height={250} className="md:h-[300px]">
               <PieChart>
                 <Pie
                   data={categoryData}
@@ -444,19 +445,19 @@ const Statistics = () => {
               </PieChart>
             </ResponsiveContainer>
           ) : (
-            <div className="flex items-center justify-center h-[300px] text-zinc-500">
+            <div className="flex items-center justify-center h-[250px] md:h-[300px] text-zinc-500 text-sm md:text-base">
               No data available
             </div>
           )}
         </div>
 
         {/* Personal Records */}
-        <div className="bg-zinc-900/50 backdrop-blur-sm rounded-xl p-6 border border-zinc-800">
-          <h2 className="text-xl font-semibold text-zinc-100 mb-6 flex items-center gap-2">
+        <div className="bg-zinc-900/50 backdrop-blur-sm rounded-lg md:rounded-xl p-4 md:p-6 border border-zinc-800">
+          <h2 className="text-lg md:text-xl font-semibold text-zinc-100 mb-4 md:mb-6 flex items-center gap-2">
             <FiAward className="text-amber-400" />
             Personal Records
           </h2>
-          <div className="space-y-4">
+          <div className="space-y-3 md:space-y-4">
             <div className="flex items-center justify-between p-4 bg-zinc-800/50 rounded-lg">
               <div className="flex items-center gap-3">
                 <HiFire className="text-2xl text-orange-400" />

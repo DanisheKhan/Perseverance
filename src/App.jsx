@@ -89,7 +89,7 @@ function App() {
         toast((t) => (
           <div className="flex flex-col gap-3">
             <div className="flex items-start gap-3">
-              <FiDownload className="text-amber-500 mt-1" size={20} />
+              <FiDownload className="text-amber-500 mt-1 shrink-0" size={20} />
               <div>
                 <p className="font-semibold text-gray-900">Backup Reminder</p>
                 <p className="text-sm text-gray-600 mt-1">
@@ -126,8 +126,9 @@ function App() {
           duration: 10000,
           position: 'top-center',
           style: {
-            minWidth: '400px',
+            minWidth: '320px',
             maxWidth: '500px',
+            width: '90vw',
           },
         });
       }

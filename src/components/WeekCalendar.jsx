@@ -20,7 +20,7 @@ const WeekCalendar = ({ dates, completions, onDateSelect }) => {
   };
 
   return (
-    <div className="flex items-center justify-between gap-2">
+    <div className="flex items-center justify-between gap-1.5 md:gap-2 overflow-x-auto pb-2 -mx-2 px-2">
       {dates.map((date) => {
         const completionCount = getCompletionCount(date);
         const isSelected = date === selectedDate;
@@ -30,14 +30,14 @@ const WeekCalendar = ({ dates, completions, onDateSelect }) => {
           <button
             key={date}
             onClick={() => handleDateClick(date)}
-            className={`flex-1 flex flex-col items-center gap-2 p-3 rounded-xl transition-all duration-300 ${isSelected
-                ? 'bg-indigo-600 shadow-lg shadow-indigo-500/30 scale-105'
-                : 'bg-zinc-900/50 hover:bg-zinc-800 border border-zinc-800 hover:border-zinc-700'
+            className={`flex-1 min-w-[60px] md:min-w-0 flex flex-col items-center gap-1.5 md:gap-2 p-2 md:p-3 rounded-lg md:rounded-xl transition-all duration-300 ${isSelected
+              ? 'bg-indigo-600 shadow-lg shadow-indigo-500/30 scale-105'
+              : 'bg-zinc-900/50 hover:bg-zinc-800 border border-zinc-800 hover:border-zinc-700'
               }`}
           >
             {/* Day name */}
             <span
-              className={`text-xs font-medium ${isSelected ? 'text-indigo-100' : 'text-zinc-400'
+              className={`text-[10px] md:text-xs font-medium ${isSelected ? 'text-indigo-100' : 'text-zinc-400'
                 }`}
             >
               {getDayName(date)}
@@ -45,30 +45,30 @@ const WeekCalendar = ({ dates, completions, onDateSelect }) => {
 
             {/* Day number */}
             <span
-              className={`text-lg font-bold ${isSelected
-                  ? 'text-white'
-                  : isTodayDate
-                    ? 'text-indigo-400'
-                    : 'text-zinc-200'
+              className={`text-base md:text-lg font-bold ${isSelected
+                ? 'text-white'
+                : isTodayDate
+                  ? 'text-indigo-400'
+                  : 'text-zinc-200'
                 }`}
             >
               {getDayNumber(date)}
             </span>
 
             {/* Completion indicator */}
-            <div className="flex gap-1">
+            <div className="flex gap-0.5 md:gap-1">
               {completionCount > 0 ? (
                 <>
                   {[...Array(Math.min(completionCount, 5))].map((_, i) => (
                     <div
                       key={i}
-                      className={`w-1.5 h-1.5 rounded-full ${isSelected ? 'bg-white' : 'bg-emerald-400'
+                      className={`w-1 h-1 md:w-1.5 md:h-1.5 rounded-full ${isSelected ? 'bg-white' : 'bg-emerald-400'
                         }`}
                     />
                   ))}
                   {completionCount > 5 && (
                     <span
-                      className={`text-xs font-medium ${isSelected ? 'text-white' : 'text-emerald-400'
+                      className={`text-[10px] md:text-xs font-medium ${isSelected ? 'text-white' : 'text-emerald-400'
                         }`}
                     >
                       +{completionCount - 5}
@@ -77,7 +77,7 @@ const WeekCalendar = ({ dates, completions, onDateSelect }) => {
                 </>
               ) : (
                 <div
-                  className={`w-1.5 h-1.5 rounded-full ${isSelected ? 'bg-indigo-300' : 'bg-zinc-700'
+                  className={`w-1 h-1 md:w-1.5 md:h-1.5 rounded-full ${isSelected ? 'bg-indigo-300' : 'bg-zinc-700'
                     }`}
                 />
               )}

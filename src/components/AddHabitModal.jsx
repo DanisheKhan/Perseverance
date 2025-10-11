@@ -56,22 +56,22 @@ const AddHabitModal = ({ isOpen, onClose, onSave }) => {
   if (!isOpen) return null;
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/60 backdrop-blur-sm animate-in fade-in duration-200">
-      <div className="bg-zinc-900 rounded-2xl border border-zinc-800 shadow-2xl w-full max-w-2xl max-h-[90vh] overflow-hidden animate-in zoom-in-95 duration-300">
+    <div className="fixed inset-0 z-50 flex items-center justify-center p-3 md:p-4 bg-black/60 backdrop-blur-sm animate-in fade-in duration-200">
+      <div className="bg-zinc-900 rounded-xl md:rounded-2xl border border-zinc-800 shadow-2xl w-full max-w-2xl max-h-[90vh] overflow-hidden animate-in zoom-in-95 duration-300">
         {/* Header */}
-        <div className="flex items-center justify-between p-6 border-b border-zinc-800">
-          <h2 className="text-2xl font-bold text-zinc-100">Create New Habit</h2>
+        <div className="flex items-center justify-between p-4 md:p-6 border-b border-zinc-800">
+          <h2 className="text-xl md:text-2xl font-bold text-zinc-100">Create New Habit</h2>
           <button
             onClick={handleClose}
             className="p-2 rounded-lg text-zinc-400 hover:text-zinc-200 hover:bg-zinc-800 transition-colors"
           >
-            <FiX size={24} />
+            <FiX size={20} className="md:w-6 md:h-6" />
           </button>
         </div>
 
         {/* Form */}
-        <form onSubmit={handleSubmit} className="p-6 overflow-y-auto max-h-[calc(90vh-140px)]">
-          <div className="space-y-6">
+        <form onSubmit={handleSubmit} className="p-4 md:p-6 overflow-y-auto max-h-[calc(90vh-120px)]">
+          <div className="space-y-4 md:space-y-6">
             {/* Name */}
             <div>
               <label className="block text-sm font-medium text-zinc-300 mb-2">
@@ -113,8 +113,8 @@ const AddHabitModal = ({ isOpen, onClose, onSave }) => {
                     type="button"
                     onClick={() => handleChange('category', cat.id)}
                     className={`p-4 rounded-xl border-2 transition-all ${formData.category === cat.id
-                        ? 'border-indigo-500 bg-indigo-500/10'
-                        : 'border-zinc-700 bg-zinc-800/30 hover:border-zinc-600'
+                      ? 'border-indigo-500 bg-indigo-500/10'
+                      : 'border-zinc-700 bg-zinc-800/30 hover:border-zinc-600'
                       }`}
                   >
                     <div className="text-2xl mb-2">{cat.icon}</div>
@@ -136,8 +136,8 @@ const AddHabitModal = ({ isOpen, onClose, onSave }) => {
                     type="button"
                     onClick={() => handleChange('color', color)}
                     className={`w-12 h-12 rounded-xl transition-all ${formData.color === color
-                        ? 'ring-2 ring-white ring-offset-2 ring-offset-zinc-900 scale-110'
-                        : 'hover:scale-105'
+                      ? 'ring-2 ring-white ring-offset-2 ring-offset-zinc-900 scale-110'
+                      : 'hover:scale-105'
                       }`}
                     style={{ backgroundColor: color }}
                   />
@@ -157,8 +157,8 @@ const AddHabitModal = ({ isOpen, onClose, onSave }) => {
                     type="button"
                     onClick={() => handleChange('icon', icon)}
                     className={`w-12 h-12 rounded-xl text-2xl transition-all ${formData.icon === icon
-                        ? 'bg-indigo-500/20 ring-2 ring-indigo-500 scale-110'
-                        : 'bg-zinc-800/30 hover:bg-zinc-700'
+                      ? 'bg-indigo-500/20 ring-2 ring-indigo-500 scale-110'
+                      : 'bg-zinc-800/30 hover:bg-zinc-700'
                       }`}
                   >
                     {icon}
@@ -187,8 +187,8 @@ const AddHabitModal = ({ isOpen, onClose, onSave }) => {
                       handleChange('target', freq.target);
                     }}
                     className={`p-3 rounded-xl border-2 transition-all ${formData.frequency === freq.value
-                        ? 'border-indigo-500 bg-indigo-500/10'
-                        : 'border-zinc-700 bg-zinc-800/30 hover:border-zinc-600'
+                      ? 'border-indigo-500 bg-indigo-500/10'
+                      : 'border-zinc-700 bg-zinc-800/30 hover:border-zinc-600'
                       }`}
                   >
                     <div className="text-sm font-medium text-zinc-200">

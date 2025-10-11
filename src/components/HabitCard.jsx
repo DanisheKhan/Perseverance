@@ -21,7 +21,7 @@ const HabitCard = ({ habit, isCompleted, onToggle, streak, onAddNote }) => {
 
   return (
     <div
-      className="group relative bg-zinc-900/50 backdrop-blur-sm rounded-2xl p-6 border border-zinc-800 hover:border-zinc-700 transition-all duration-300 hover:shadow-lg hover:shadow-indigo-500/10"
+      className="group relative bg-zinc-900/50 backdrop-blur-sm rounded-xl md:rounded-2xl p-4 md:p-6 border border-zinc-800 hover:border-zinc-700 transition-all duration-300 hover:shadow-lg hover:shadow-indigo-500/10"
       style={{
         background: isCompleted
           ? `linear-gradient(135deg, ${habit.color}15 0%, transparent 100%)`
@@ -30,7 +30,7 @@ const HabitCard = ({ habit, isCompleted, onToggle, streak, onAddNote }) => {
     >
       {/* Gradient border effect */}
       <div
-        className="absolute inset-0 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none"
+        className="absolute inset-0 rounded-xl md:rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none"
         style={{
           background: `linear-gradient(135deg, ${habit.color}40, transparent)`,
           filter: 'blur(20px)',
@@ -38,12 +38,12 @@ const HabitCard = ({ habit, isCompleted, onToggle, streak, onAddNote }) => {
         }}
       />
 
-      <div className="flex items-start justify-between gap-4">
+      <div className="flex items-start justify-between gap-3 md:gap-4">
         {/* Left section */}
-        <div className="flex items-start gap-4 flex-1">
+        <div className="flex items-start gap-3 md:gap-4 flex-1 min-w-0">
           {/* Icon */}
           <div
-            className="w-12 h-12 rounded-xl flex items-center justify-center text-2xl shrink-0 transition-transform duration-300 group-hover:scale-110"
+            className="w-10 h-10 md:w-12 md:h-12 rounded-lg md:rounded-xl flex items-center justify-center text-xl md:text-2xl shrink-0 transition-transform duration-300 group-hover:scale-110"
             style={{ backgroundColor: `${habit.color}20` }}
           >
             {habit.icon}
@@ -51,19 +51,19 @@ const HabitCard = ({ habit, isCompleted, onToggle, streak, onAddNote }) => {
 
           {/* Content */}
           <div className="flex-1 min-w-0">
-            <h3 className="text-lg font-semibold text-zinc-100 mb-1 truncate">
+            <h3 className="text-base md:text-lg font-semibold text-zinc-100 mb-1 truncate">
               {habit.name}
             </h3>
             {habit.description && (
-              <p className="text-sm text-zinc-400 mb-3 line-clamp-2">
+              <p className="text-xs md:text-sm text-zinc-400 mb-2 md:mb-3 line-clamp-2">
                 {habit.description}
               </p>
             )}
 
             {/* Stats */}
-            <div className="flex items-center gap-4 text-sm">
+            <div className="flex items-center gap-2 md:gap-4 text-xs md:text-sm flex-wrap">
               {streak > 0 && (
-                <div className="flex items-center gap-1.5">
+                <div className="flex items-center gap-1 md:gap-1.5">
                   <HiSparkles className="text-amber-400" />
                   <span className="text-zinc-300">
                     <span className="font-semibold text-amber-400">{streak}</span> day streak
@@ -84,22 +84,22 @@ const HabitCard = ({ habit, isCompleted, onToggle, streak, onAddNote }) => {
         </div>
 
         {/* Right section - Actions */}
-        <div className="flex items-center gap-2">
+        <div className="flex items-center gap-1.5 md:gap-2 shrink-0">
           {/* Note button */}
           <button
             onClick={() => setShowNote(!showNote)}
-            className="p-2 rounded-lg text-zinc-400 hover:text-zinc-200 hover:bg-zinc-800 transition-colors"
+            className="p-1.5 md:p-2 rounded-lg text-zinc-400 hover:text-zinc-200 hover:bg-zinc-800 transition-colors"
             title="Add note"
           >
-            <FiMessageSquare size={18} />
+            <FiMessageSquare size={16} className="md:w-[18px] md:h-[18px]" />
           </button>
 
           {/* Checkbox */}
           <button
             onClick={handleToggle}
-            className={`relative w-12 h-12 rounded-xl flex items-center justify-center transition-all duration-300 ${isCompleted
-                ? 'bg-gradient-to-br shadow-lg'
-                : 'bg-zinc-800 hover:bg-zinc-700'
+            className={`relative w-10 h-10 md:w-12 md:h-12 rounded-lg md:rounded-xl flex items-center justify-center transition-all duration-300 ${isCompleted
+              ? 'bg-gradient-to-br shadow-lg'
+              : 'bg-zinc-800 hover:bg-zinc-700'
               } ${isAnimating ? 'scale-95' : 'scale-100'}`}
             style={
               isCompleted
@@ -114,12 +114,12 @@ const HabitCard = ({ habit, isCompleted, onToggle, streak, onAddNote }) => {
               <FiCheck
                 className={`text-white transition-all duration-300 ${isAnimating ? 'scale-0 rotate-180' : 'scale-100 rotate-0'
                   }`}
-                size={24}
+                size={20}
                 strokeWidth={3}
               />
             )}
             {!isCompleted && (
-              <div className="w-5 h-5 rounded-md border-2 border-zinc-600" />
+              <div className="w-4 h-4 md:w-5 md:h-5 rounded-md border-2 border-zinc-600" />
             )}
           </button>
         </div>
@@ -127,7 +127,7 @@ const HabitCard = ({ habit, isCompleted, onToggle, streak, onAddNote }) => {
 
       {/* Note input */}
       {showNote && (
-        <div className="mt-4 pt-4 border-t border-zinc-800 animate-in fade-in slide-in-from-top-2 duration-200">
+        <div className="mt-3 md:mt-4 pt-3 md:pt-4 border-t border-zinc-800 animate-in fade-in slide-in-from-top-2 duration-200">
           <textarea
             value={note}
             onChange={(e) => setNote(e.target.value)}
@@ -141,13 +141,13 @@ const HabitCard = ({ habit, isCompleted, onToggle, streak, onAddNote }) => {
                 setShowNote(false);
                 setNote('');
               }}
-              className="px-3 py-1.5 text-sm text-zinc-400 hover:text-zinc-200 transition-colors"
+              className="px-3 py-1.5 text-xs md:text-sm text-zinc-400 hover:text-zinc-200 transition-colors"
             >
               Cancel
             </button>
             <button
               onClick={handleSaveNote}
-              className="px-3 py-1.5 text-sm bg-indigo-600 hover:bg-indigo-500 text-white rounded-lg transition-colors"
+              className="px-3 py-1.5 text-xs md:text-sm bg-indigo-600 hover:bg-indigo-500 text-white rounded-lg transition-colors"
             >
               Save
             </button>

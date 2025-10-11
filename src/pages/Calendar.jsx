@@ -174,23 +174,23 @@ const Calendar = () => {
     : habits.filter((h) => h.isActive);
 
   return (
-    <div className="space-y-6 pb-24">
+    <div className="space-y-4 md:space-y-6 pb-24 lg:pb-8">
       {/* Header */}
-      <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
+      <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 md:gap-4">
         <div>
-          <h1 className="text-3xl font-bold text-zinc-100 flex items-center gap-3">
+          <h1 className="text-2xl sm:text-3xl font-bold text-zinc-100 flex items-center gap-2 md:gap-3">
             <FiCalendar className="text-indigo-400" />
             Calendar & History
           </h1>
-          <p className="text-zinc-400 mt-1">
+          <p className="text-zinc-400 mt-1 text-sm md:text-base">
             View your habit completion history
           </p>
         </div>
-        <div className="flex items-center gap-3">
+        <div className="flex items-center gap-2 md:gap-3 w-full sm:w-auto">
           <select
             value={selectedHabit || ''}
             onChange={(e) => setSelectedHabit(e.target.value || null)}
-            className="px-4 py-2.5 bg-zinc-800 border border-zinc-700 rounded-xl text-zinc-100 focus:outline-none focus:ring-2 focus:ring-indigo-500"
+            className="w-full sm:w-auto px-3 md:px-4 py-2 md:py-2.5 bg-zinc-800 border border-zinc-700 rounded-lg md:rounded-xl text-zinc-100 focus:outline-none focus:ring-2 focus:ring-indigo-500 text-sm md:text-base"
           >
             <option value="">All Habits</option>
             {habits
@@ -205,28 +205,28 @@ const Calendar = () => {
       </div>
 
       {/* Calendar Navigation */}
-      <div className="bg-zinc-900/50 backdrop-blur-sm rounded-xl p-6 border border-zinc-800">
-        <div className="flex items-center justify-between mb-6">
-          <div className="flex items-center gap-4">
+      <div className="bg-zinc-900/50 backdrop-blur-sm rounded-lg md:rounded-xl p-4 md:p-6 border border-zinc-800">
+        <div className="flex flex-col sm:flex-row items-center justify-between mb-4 md:mb-6 gap-3">
+          <div className="flex items-center gap-2 md:gap-4 w-full sm:w-auto justify-center">
             <button
               onClick={handlePrevMonth}
-              className="w-10 h-10 rounded-lg bg-zinc-800 hover:bg-zinc-700 text-zinc-100 flex items-center justify-center transition-colors"
+              className="w-9 h-9 md:w-10 md:h-10 rounded-lg bg-zinc-800 hover:bg-zinc-700 text-zinc-100 flex items-center justify-center transition-colors"
             >
               <FiChevronLeft size={20} />
             </button>
-            <h2 className="text-2xl font-bold text-zinc-100 min-w-[200px] text-center">
+            <h2 className="text-xl md:text-2xl font-bold text-zinc-100 min-w-[180px] md:min-w-[200px] text-center">
               {getMonthName(currentDate)} {year}
             </h2>
             <button
               onClick={handleNextMonth}
-              className="w-10 h-10 rounded-lg bg-zinc-800 hover:bg-zinc-700 text-zinc-100 flex items-center justify-center transition-colors"
+              className="w-9 h-9 md:w-10 md:h-10 rounded-lg bg-zinc-800 hover:bg-zinc-700 text-zinc-100 flex items-center justify-center transition-colors"
             >
               <FiChevronRight size={20} />
             </button>
           </div>
           <button
             onClick={handleToday}
-            className="px-4 py-2 rounded-lg bg-indigo-500 hover:bg-indigo-600 text-white font-medium transition-colors"
+            className="w-full sm:w-auto px-4 py-2 rounded-lg bg-indigo-500 hover:bg-indigo-600 text-white font-medium transition-colors text-sm md:text-base"
           >
             Today
           </button>
@@ -235,11 +235,11 @@ const Calendar = () => {
         {/* Calendar Grid */}
         <div>
           {/* Day labels */}
-          <div className="grid grid-cols-7 gap-2 mb-2">
+          <div className="grid grid-cols-7 gap-1 md:gap-2 mb-2">
             {['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'].map((day) => (
               <div
                 key={day}
-                className="text-center text-sm font-medium text-zinc-500 py-2"
+                className="text-center text-xs md:text-sm font-medium text-zinc-500 py-1 md:py-2"
               >
                 {day}
               </div>
@@ -247,7 +247,7 @@ const Calendar = () => {
           </div>
 
           {/* Calendar days */}
-          <div className="grid grid-cols-7 gap-2">
+          <div className="grid grid-cols-7 gap-1 md:gap-2">
             {calendarData.map((day, index) => {
               const completedHabits = getCompletedHabits(day.date);
               const isTodayDate = isToday(day.date);
@@ -262,24 +262,24 @@ const Calendar = () => {
                   onClick={() => handleDateClick(day.date)}
                   disabled={isFuture}
                   className={`
-                    relative aspect-square p-2 rounded-lg transition-all
+                    relative aspect-square p-1 md:p-2 rounded-md md:rounded-lg transition-all
                     ${day.isCurrentMonth
                       ? 'bg-zinc-800/50'
                       : 'bg-zinc-900/30 opacity-40'
                     }
-                    ${isTodayDate ? 'ring-2 ring-indigo-500' : ''}
+                    ${isTodayDate ? 'ring-1 md:ring-2 ring-indigo-500' : ''}
                     ${!isFuture && day.isCurrentMonth
                       ? 'hover:bg-zinc-700 cursor-pointer'
                       : ''
                     }
                     ${isFuture ? 'cursor-not-allowed opacity-30' : ''}
-                    ${hasSpecialDay ? 'ring-2 ring-amber-500' : ''}
+                    ${hasSpecialDay ? 'ring-1 md:ring-2 ring-amber-500' : ''}
                   `}
                 >
                   <div className="flex flex-col h-full">
                     <span
                       className={`
-                      text-sm font-medium mb-1
+                      text-xs md:text-sm font-medium mb-1
                       ${isTodayDate ? 'text-indigo-400' : 'text-zinc-100'}
                       ${!day.isCurrentMonth ? 'text-zinc-600' : ''}
                     `}
@@ -287,23 +287,23 @@ const Calendar = () => {
                       {day.date.getDate()}
                     </span>
                     {hasSpecialDay && (
-                      <div className="absolute top-1 right-1">
-                        <HiSparkles className="text-amber-400 text-xs" />
+                      <div className="absolute top-0.5 right-0.5 md:top-1 md:right-1">
+                        <HiSparkles className="text-amber-400 text-[10px] md:text-xs" />
                       </div>
                     )}
                     <div className="flex flex-wrap gap-0.5 justify-center mt-auto">
-                      {completedHabits.slice(0, 6).map((habit) => (
+                      {completedHabits.slice(0, 4).map((habit) => (
                         <div
                           key={habit.id}
-                          className="w-1.5 h-1.5 rounded-full"
+                          className="w-1 h-1 md:w-1.5 md:h-1.5 rounded-full"
                           style={{ backgroundColor: habit.color }}
                           title={habit.name}
                         />
                       ))}
-                      {completedHabits.length > 6 && (
+                      {completedHabits.length > 4 && (
                         <div
-                          className="w-1.5 h-1.5 rounded-full bg-zinc-500"
-                          title={`+${completedHabits.length - 6} more`}
+                          className="w-1 h-1 md:w-1.5 md:h-1.5 rounded-full bg-zinc-500"
+                          title={`+${completedHabits.length - 4} more`}
                         />
                       )}
                     </div>
@@ -316,15 +316,15 @@ const Calendar = () => {
       </div>
 
       {/* Month Statistics */}
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
-        <div className="bg-zinc-900/50 backdrop-blur-sm rounded-xl p-6 border border-zinc-800">
+      <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 md:gap-4">
+        <div className="bg-zinc-900/50 backdrop-blur-sm rounded-lg md:rounded-xl p-4 md:p-6 border border-zinc-800">
           <div className="flex items-center justify-between mb-2">
-            <h3 className="text-sm text-zinc-400">Month Completion</h3>
-            <span className="text-2xl font-bold text-indigo-300">
+            <h3 className="text-xs md:text-sm text-zinc-400">Month Completion</h3>
+            <span className="text-xl md:text-2xl font-bold text-indigo-300">
               {monthStats.completionRate}%
             </span>
           </div>
-          <div className="h-2 bg-zinc-800 rounded-full overflow-hidden">
+          <div className="h-1.5 md:h-2 bg-zinc-800 rounded-full overflow-hidden">
             <div
               className="h-full bg-gradient-to-r from-indigo-500 to-purple-500 transition-all"
               style={{ width: `${monthStats.completionRate}%` }}
@@ -332,23 +332,23 @@ const Calendar = () => {
           </div>
         </div>
 
-        <div className="bg-zinc-900/50 backdrop-blur-sm rounded-xl p-6 border border-zinc-800">
-          <h3 className="text-sm text-zinc-400 mb-2">Total Completions</h3>
-          <p className="text-2xl font-bold text-emerald-300">
+        <div className="bg-zinc-900/50 backdrop-blur-sm rounded-lg md:rounded-xl p-4 md:p-6 border border-zinc-800">
+          <h3 className="text-xs md:text-sm text-zinc-400 mb-2">Total Completions</h3>
+          <p className="text-xl md:text-2xl font-bold text-emerald-300">
             {monthStats.totalCompletions}
           </p>
         </div>
 
-        <div className="bg-zinc-900/50 backdrop-blur-sm rounded-xl p-6 border border-zinc-800">
-          <h3 className="text-sm text-zinc-400 mb-2">Streaks Started</h3>
-          <p className="text-2xl font-bold text-amber-300">
+        <div className="bg-zinc-900/50 backdrop-blur-sm rounded-lg md:rounded-xl p-4 md:p-6 border border-zinc-800">
+          <h3 className="text-xs md:text-sm text-zinc-400 mb-2">Streaks Started</h3>
+          <p className="text-xl md:text-2xl font-bold text-amber-300">
             {monthStats.streaksStarted}
           </p>
         </div>
 
-        <div className="bg-zinc-900/50 backdrop-blur-sm rounded-xl p-6 border border-zinc-800">
-          <h3 className="text-sm text-zinc-400 mb-2">Perfect Days</h3>
-          <p className="text-2xl font-bold text-purple-300 flex items-center gap-2">
+        <div className="bg-zinc-900/50 backdrop-blur-sm rounded-lg md:rounded-xl p-4 md:p-6 border border-zinc-800">
+          <h3 className="text-xs md:text-sm text-zinc-400 mb-2">Perfect Days</h3>
+          <p className="text-xl md:text-2xl font-bold text-purple-300 flex items-center gap-2">
             <HiSparkles />
             {monthStats.specialDays.length}
           </p>

@@ -198,28 +198,28 @@ const SmartInsights = () => {
   };
 
   return (
-    <div className="space-y-4">
-      <div className="flex items-center gap-3 mb-4">
-        <FiBrain className="text-indigo-400" size={24} />
-        <h2 className="text-xl font-semibold text-zinc-100">Smart Insights</h2>
+    <div className="space-y-3 md:space-y-4">
+      <div className="flex items-center gap-2 md:gap-3 mb-3 md:mb-4">
+        <FiBrain className="text-indigo-400" size={20} />
+        <h2 className="text-lg md:text-xl font-semibold text-zinc-100">Smart Insights</h2>
       </div>
 
-      <div className="space-y-3">
+      <div className="space-y-2 md:space-y-3">
         {insights.map((insight, index) => {
           const Icon = insight.icon;
           return (
             <div
               key={index}
-              className={`bg-gradient-to-br backdrop-blur-sm rounded-xl p-4 border ${colorClasses[insight.color]
+              className={`bg-gradient-to-br backdrop-blur-sm rounded-lg md:rounded-xl p-3 md:p-4 border ${colorClasses[insight.color]
                 }`}
             >
-              <div className="flex items-start gap-3">
-                <div className="mt-1">
-                  <Icon className={iconColorClasses[insight.color]} size={20} />
+              <div className="flex items-start gap-2 md:gap-3">
+                <div className="mt-0.5 md:mt-1 shrink-0">
+                  <Icon className={iconColorClasses[insight.color]} size={18} />
                 </div>
-                <div className="flex-1">
-                  <h3 className="font-semibold text-zinc-100 mb-1">{insight.title}</h3>
-                  <p className="text-sm text-zinc-400">{insight.description}</p>
+                <div className="flex-1 min-w-0">
+                  <h3 className="font-semibold text-zinc-100 mb-1 text-sm md:text-base">{insight.title}</h3>
+                  <p className="text-xs md:text-sm text-zinc-400">{insight.description}</p>
                 </div>
               </div>
             </div>

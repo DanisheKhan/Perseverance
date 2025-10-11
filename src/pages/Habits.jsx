@@ -122,29 +122,30 @@ const Habits = () => {
   };
 
   return (
-    <div className="space-y-6 pb-24">
+    <div className="space-y-4 md:space-y-6 pb-24 lg:pb-8">
       {/* Header */}
-      <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
+      <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 md:gap-4">
         <div>
-          <h1 className="text-3xl font-bold text-zinc-100 flex items-center gap-3">
+          <h1 className="text-2xl sm:text-3xl font-bold text-zinc-100 flex items-center gap-2 md:gap-3">
             <HiSparkles className="text-amber-400" />
             My Habits
           </h1>
-          <p className="text-zinc-400 mt-1">
+          <p className="text-zinc-400 mt-1 text-sm md:text-base">
             Manage and track all your habits in one place
           </p>
         </div>
-        <div className="flex items-center gap-3">
+        <div className="flex items-center gap-2 md:gap-3 w-full sm:w-auto">
           <button
             onClick={() => setShowTemplateModal(true)}
-            className="flex items-center gap-2 px-4 py-2.5 bg-zinc-800 hover:bg-zinc-700 text-zinc-200 rounded-xl transition-colors border border-zinc-700"
+            className="flex items-center gap-2 px-3 md:px-4 py-2 md:py-2.5 bg-zinc-800 hover:bg-zinc-700 text-zinc-200 rounded-lg md:rounded-xl transition-colors border border-zinc-700 text-sm md:text-base"
           >
             <FiLayout size={18} />
             <span className="hidden sm:inline">Templates</span>
+            <span className="sm:hidden">New</span>
           </button>
           <button
             onClick={() => setShowAddModal(true)}
-            className="flex items-center gap-2 px-4 py-2.5 bg-gradient-to-r from-indigo-600 to-indigo-500 hover:from-indigo-500 hover:to-indigo-400 text-white rounded-xl transition-all shadow-lg shadow-indigo-500/30"
+            className="flex items-center gap-2 px-3 md:px-4 py-2 md:py-2.5 bg-gradient-to-r from-indigo-600 to-indigo-500 hover:from-indigo-500 hover:to-indigo-400 text-white rounded-lg md:rounded-xl transition-all shadow-lg shadow-indigo-500/30 text-sm md:text-base flex-1 sm:flex-initial justify-center"
           >
             <FiPlus size={18} strokeWidth={2.5} />
             <span>New Habit</span>
@@ -153,41 +154,41 @@ const Habits = () => {
       </div>
 
       {/* Tabs */}
-      <div className="flex items-center justify-between gap-4">
-        <div className="flex items-center gap-2 p-1 bg-zinc-900/50 rounded-xl border border-zinc-800">
+      <div className="flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-3 md:gap-4">
+        <div className="flex items-center gap-1 md:gap-2 p-1 bg-zinc-900/50 rounded-lg md:rounded-xl border border-zinc-800 overflow-x-auto">
           <button
             onClick={() => setActiveTab('active')}
-            className={`px-4 py-2 rounded-lg transition-all ${activeTab === 'active'
-                ? 'bg-indigo-600 text-white shadow-lg shadow-indigo-500/30'
-                : 'text-zinc-400 hover:text-zinc-200'
+            className={`px-3 md:px-4 py-1.5 md:py-2 rounded-md md:rounded-lg transition-all whitespace-nowrap text-sm md:text-base ${activeTab === 'active'
+              ? 'bg-indigo-600 text-white shadow-lg shadow-indigo-500/30'
+              : 'text-zinc-400 hover:text-zinc-200'
               }`}
           >
             Active
-            <span className="ml-2 text-xs">
+            <span className="ml-1 md:ml-2 text-xs">
               ({habits.filter((h) => h.isActive).length})
             </span>
           </button>
           <button
             onClick={() => setActiveTab('archived')}
-            className={`px-4 py-2 rounded-lg transition-all ${activeTab === 'archived'
-                ? 'bg-indigo-600 text-white shadow-lg shadow-indigo-500/30'
-                : 'text-zinc-400 hover:text-zinc-200'
+            className={`px-3 md:px-4 py-1.5 md:py-2 rounded-md md:rounded-lg transition-all whitespace-nowrap text-sm md:text-base ${activeTab === 'archived'
+              ? 'bg-indigo-600 text-white shadow-lg shadow-indigo-500/30'
+              : 'text-zinc-400 hover:text-zinc-200'
               }`}
           >
             Archived
-            <span className="ml-2 text-xs">
+            <span className="ml-1 md:ml-2 text-xs">
               ({habits.filter((h) => !h.isActive).length})
             </span>
           </button>
           <button
             onClick={() => setActiveTab('all')}
-            className={`px-4 py-2 rounded-lg transition-all ${activeTab === 'all'
-                ? 'bg-indigo-600 text-white shadow-lg shadow-indigo-500/30'
-                : 'text-zinc-400 hover:text-zinc-200'
+            className={`px-3 md:px-4 py-1.5 md:py-2 rounded-md md:rounded-lg transition-all whitespace-nowrap text-sm md:text-base ${activeTab === 'all'
+              ? 'bg-indigo-600 text-white shadow-lg shadow-indigo-500/30'
+              : 'text-zinc-400 hover:text-zinc-200'
               }`}
           >
             All
-            <span className="ml-2 text-xs">({habits.length})</span>
+            <span className="ml-1 md:ml-2 text-xs">({habits.length})</span>
           </button>
         </div>
 
@@ -198,9 +199,9 @@ const Habits = () => {
               setBulkSelectMode(!bulkSelectMode);
               setSelectedHabits([]);
             }}
-            className={`flex items-center gap-2 px-4 py-2 rounded-xl transition-all ${bulkSelectMode
-                ? 'bg-indigo-600 text-white'
-                : 'bg-zinc-800 hover:bg-zinc-700 text-zinc-300 border border-zinc-700'
+            className={`flex items-center gap-2 px-3 md:px-4 py-2 rounded-lg md:rounded-xl transition-all text-sm md:text-base ${bulkSelectMode
+              ? 'bg-indigo-600 text-white'
+              : 'bg-zinc-800 hover:bg-zinc-700 text-zinc-300 border border-zinc-700'
               }`}
           >
             <FiCheck size={18} />
@@ -210,26 +211,26 @@ const Habits = () => {
       </div>
 
       {/* Filters */}
-      <div className="flex flex-col sm:flex-row gap-4">
+      <div className="flex flex-col sm:flex-row gap-3 md:gap-4">
         {/* Search */}
         <div className="flex-1 relative">
-          <FiSearch className="absolute left-4 top-1/2 -translate-y-1/2 text-zinc-400" size={20} />
+          <FiSearch className="absolute left-3 md:left-4 top-1/2 -translate-y-1/2 text-zinc-400" size={20} />
           <input
             type="text"
             placeholder="Search habits..."
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
-            className="w-full pl-12 pr-4 py-3 bg-zinc-900/50 border border-zinc-800 rounded-xl text-zinc-100 placeholder-zinc-500 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent transition-all"
+            className="w-full pl-10 md:pl-12 pr-3 md:pr-4 py-2.5 md:py-3 bg-zinc-900/50 border border-zinc-800 rounded-lg md:rounded-xl text-zinc-100 placeholder-zinc-500 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent transition-all text-sm md:text-base"
           />
         </div>
 
         {/* Category Filter */}
         <div className="relative">
-          <FiFilter className="absolute left-4 top-1/2 -translate-y-1/2 text-zinc-400 pointer-events-none" size={20} />
+          <FiFilter className="absolute left-3 md:left-4 top-1/2 -translate-y-1/2 text-zinc-400 pointer-events-none" size={20} />
           <select
             value={selectedCategory}
             onChange={(e) => setSelectedCategory(e.target.value)}
-            className="pl-12 pr-8 py-3 bg-zinc-900/50 border border-zinc-800 rounded-xl text-zinc-100 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent transition-all appearance-none cursor-pointer min-w-[180px]"
+            className="w-full sm:w-auto pl-10 md:pl-12 pr-8 py-2.5 md:py-3 bg-zinc-900/50 border border-zinc-800 rounded-lg md:rounded-xl text-zinc-100 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent transition-all appearance-none cursor-pointer min-w-[180px] text-sm md:text-base"
           >
             <option value="all">All Categories</option>
             {habitCategories.map((cat) => (
@@ -243,15 +244,15 @@ const Habits = () => {
 
       {/* Bulk Actions Bar */}
       {bulkSelectMode && selectedHabits.length > 0 && (
-        <div className="bg-indigo-600 rounded-xl p-4 flex items-center justify-between animate-in slide-in-from-top-2 duration-200">
-          <span className="text-white font-medium">
+        <div className="bg-indigo-600 rounded-lg md:rounded-xl p-3 md:p-4 flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-3 animate-in slide-in-from-top-2 duration-200">
+          <span className="text-white font-medium text-sm md:text-base">
             {selectedHabits.length} habit{selectedHabits.length > 1 ? 's' : ''} selected
           </span>
-          <div className="flex items-center gap-3">
+          <div className="flex items-center gap-2 md:gap-3">
             {activeTab === 'active' && (
               <button
                 onClick={handleBulkArchive}
-                className="flex items-center gap-2 px-4 py-2 bg-white/10 hover:bg-white/20 text-white rounded-lg transition-colors"
+                className="flex items-center gap-2 px-3 md:px-4 py-2 bg-white/10 hover:bg-white/20 text-white rounded-lg transition-colors text-sm md:text-base flex-1 sm:flex-initial justify-center"
               >
                 <FiArchive size={18} />
                 <span>Archive</span>
@@ -260,7 +261,7 @@ const Habits = () => {
             {activeTab === 'archived' && (
               <button
                 onClick={handleBulkActivate}
-                className="flex items-center gap-2 px-4 py-2 bg-white/10 hover:bg-white/20 text-white rounded-lg transition-colors"
+                className="flex items-center gap-2 px-3 md:px-4 py-2 bg-white/10 hover:bg-white/20 text-white rounded-lg transition-colors text-sm md:text-base flex-1 sm:flex-initial justify-center"
               >
                 <FiCheck size={18} />
                 <span>Activate</span>
@@ -271,7 +272,7 @@ const Habits = () => {
                 setSelectedHabits([]);
                 setBulkSelectMode(false);
               }}
-              className="px-4 py-2 text-white hover:bg-white/10 rounded-lg transition-colors"
+              className="px-3 md:px-4 py-2 text-white hover:bg-white/10 rounded-lg transition-colors text-sm md:text-base"
             >
               Cancel
             </button>
@@ -281,14 +282,14 @@ const Habits = () => {
 
       {/* Habits Grid */}
       {filteredHabits.length === 0 ? (
-        <div className="text-center py-20">
-          <div className="inline-flex items-center justify-center w-20 h-20 rounded-full bg-zinc-800/50 mb-6">
-            <HiSparkles className="text-4xl text-zinc-600" />
+        <div className="text-center py-12 md:py-20">
+          <div className="inline-flex items-center justify-center w-16 h-16 md:w-20 md:h-20 rounded-full bg-zinc-800/50 mb-4 md:mb-6">
+            <HiSparkles className="text-3xl md:text-4xl text-zinc-600" />
           </div>
-          <h3 className="text-xl font-semibold text-zinc-300 mb-2">
+          <h3 className="text-lg md:text-xl font-semibold text-zinc-300 mb-2">
             No habits found
           </h3>
-          <p className="text-zinc-500 mb-6">
+          <p className="text-sm md:text-base text-zinc-500 mb-4 md:mb-6 px-4">
             {searchQuery || selectedCategory !== 'all'
               ? 'Try adjusting your filters'
               : 'Create your first habit to get started'}
@@ -296,7 +297,7 @@ const Habits = () => {
           {!searchQuery && selectedCategory === 'all' && (
             <button
               onClick={() => setShowAddModal(true)}
-              className="inline-flex items-center gap-2 px-6 py-3 bg-gradient-to-r from-indigo-600 to-indigo-500 hover:from-indigo-500 hover:to-indigo-400 text-white rounded-xl transition-all shadow-lg shadow-indigo-500/30"
+              className="inline-flex items-center gap-2 px-5 md:px-6 py-2.5 md:py-3 bg-gradient-to-r from-indigo-600 to-indigo-500 hover:from-indigo-500 hover:to-indigo-400 text-white rounded-lg md:rounded-xl transition-all shadow-lg shadow-indigo-500/30 text-sm md:text-base"
             >
               <FiPlus size={20} />
               <span>Create New Habit</span>
@@ -304,7 +305,7 @@ const Habits = () => {
           )}
         </div>
       ) : (
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+        <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-3 md:gap-4">
           {filteredHabits.map((habit) => {
             const weeklyProgress = getWeeklyProgress(habit.id);
             const streak = calculateStreak(habit.id);
@@ -314,8 +315,8 @@ const Habits = () => {
               <div
                 key={habit.id}
                 className={`group relative bg-zinc-900/50 backdrop-blur-sm rounded-xl p-6 border transition-all ${bulkSelectMode && isSelected
-                    ? 'border-indigo-500 bg-indigo-500/10'
-                    : 'border-zinc-800 hover:border-zinc-700'
+                  ? 'border-indigo-500 bg-indigo-500/10'
+                  : 'border-zinc-800 hover:border-zinc-700'
                   } hover:shadow-lg hover:shadow-indigo-500/5`}
               >
                 {/* Bulk Select Checkbox */}
@@ -324,8 +325,8 @@ const Habits = () => {
                     <button
                       onClick={() => handleBulkToggle(habit.id)}
                       className={`w-6 h-6 rounded-md border-2 flex items-center justify-center transition-all ${isSelected
-                          ? 'bg-indigo-600 border-indigo-600'
-                          : 'border-zinc-600 hover:border-indigo-500'
+                        ? 'bg-indigo-600 border-indigo-600'
+                        : 'border-zinc-600 hover:border-indigo-500'
                         }`}
                     >
                       {isSelected && <FiCheck className="text-white" size={16} />}

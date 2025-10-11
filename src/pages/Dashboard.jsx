@@ -95,30 +95,30 @@ const Dashboard = () => {
   const selectedDateCompletions = getCompletionsForDate(selectedDate);
 
   return (
-    <div className="space-y-8 pb-24">
+    <div className="space-y-6 md:space-y-8 pb-24 lg:pb-8">
       {/* Header Section */}
-      <div className="bg-gradient-to-br from-zinc-900/80 to-zinc-900/40 backdrop-blur-sm rounded-2xl p-8 border border-zinc-800 shadow-xl">
-        <div className="flex flex-col lg:flex-row items-start lg:items-center justify-between gap-6">
+      <div className="bg-gradient-to-br from-zinc-900/80 to-zinc-900/40 backdrop-blur-sm rounded-xl md:rounded-2xl p-6 md:p-8 border border-zinc-800 shadow-xl">
+        <div className="flex flex-col lg:flex-row items-start lg:items-center justify-between gap-4 md:gap-6">
           {/* Left: Greeting & Quote */}
-          <div className="flex-1">
-            <div className="flex items-center gap-3 mb-2">
-              <h1 className="text-3xl md:text-4xl font-bold text-zinc-100">
+          <div className="flex-1 w-full">
+            <div className="flex items-center gap-2 md:gap-3 mb-2">
+              <h1 className="text-2xl sm:text-3xl md:text-4xl font-bold text-zinc-100">
                 Welcome back, {settings.userName || 'Champion'}! 👋
               </h1>
             </div>
-            <div className="flex items-center gap-2 text-zinc-400 mb-4">
+            <div className="flex items-center gap-2 text-zinc-400 mb-3 md:mb-4">
               <FiCalendar size={16} />
-              <p className="text-sm">{formatDate(new Date())}</p>
+              <p className="text-xs sm:text-sm">{formatDate(new Date())}</p>
             </div>
             {settings.motivationalQuotes && quote && (
-              <p className="text-indigo-300 italic text-lg max-w-2xl leading-relaxed">
+              <p className="text-indigo-300 italic text-base sm:text-lg max-w-2xl leading-relaxed">
                 "{quote}"
               </p>
             )}
           </div>
 
           {/* Right: Progress Ring */}
-          <div className="shrink-0">
+          <div className="shrink-0 self-center lg:self-auto">
             <ProgressRing progress={todayStats.todayProgress} />
           </div>
         </div>
@@ -131,16 +131,16 @@ const Dashboard = () => {
       <SmartInsights />
 
       {/* Week Calendar */}
-      <div className="bg-zinc-900/50 backdrop-blur-sm rounded-2xl p-6 border border-zinc-800">
-        <div className="flex items-center justify-between mb-4">
-          <h2 className="text-xl font-semibold text-zinc-100 flex items-center gap-2">
+      <div className="bg-zinc-900/50 backdrop-blur-sm rounded-xl md:rounded-2xl p-4 md:p-6 border border-zinc-800">
+        <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between mb-4 gap-3">
+          <h2 className="text-lg md:text-xl font-semibold text-zinc-100 flex items-center gap-2">
             <HiSparkles className="text-amber-400" />
             This Week's Activity
           </h2>
           {!isViewingToday && (
             <button
               onClick={() => setSelectedDate(getCurrentDate())}
-              className="text-sm text-indigo-400 hover:text-indigo-300 transition-colors"
+              className="text-xs sm:text-sm text-indigo-400 hover:text-indigo-300 transition-colors"
             >
               Back to Today
             </button>
@@ -155,12 +155,12 @@ const Dashboard = () => {
 
       {/* Today's Habits Section */}
       <div>
-        <div className="flex items-center justify-between mb-6">
-          <h2 className="text-2xl font-bold text-zinc-100">
+        <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between mb-4 md:mb-6 gap-3">
+          <h2 className="text-xl md:text-2xl font-bold text-zinc-100">
             {isViewingToday ? "Today's Habits" : `Habits for ${formatDate(selectedDate)}`}
           </h2>
           {selectedDateHabits.length > 0 && (
-            <span className="text-sm text-zinc-400">
+            <span className="text-xs sm:text-sm text-zinc-400">
               {selectedDateCompletions.filter((c) => c.completed).length} /{' '}
               {selectedDateHabits.length} completed
             </span>
@@ -170,7 +170,7 @@ const Dashboard = () => {
         {selectedDateHabits.length === 0 ? (
           <EmptyState onCreateHabit={handleCreateHabit} />
         ) : (
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
+          <div className="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-2 gap-3 md:gap-4">
             {selectedDateHabits.map((habit) => (
               <HabitCard
                 key={habit.id}
@@ -189,7 +189,7 @@ const Dashboard = () => {
       {activeHabits.length > 0 && (
         <button
           onClick={handleCreateHabit}
-          className="fixed bottom-8 right-8 w-16 h-16 bg-gradient-to-br from-indigo-600 to-indigo-500 hover:from-indigo-500 hover:to-indigo-400 text-white rounded-full shadow-2xl shadow-indigo-500/40 hover:shadow-indigo-500/60 hover:scale-110 transition-all duration-300 flex items-center justify-center z-50 group"
+          className="fixed bottom-20 right-4 sm:bottom-24 sm:right-8 lg:bottom-8 w-14 h-14 sm:w-16 sm:h-16 bg-gradient-to-br from-indigo-600 to-indigo-500 hover:from-indigo-500 hover:to-indigo-400 text-white rounded-full shadow-2xl shadow-indigo-500/40 hover:shadow-indigo-500/60 hover:scale-110 transition-all duration-300 flex items-center justify-center z-40 group"
           title="Create new habit"
         >
           <FiPlus size={28} strokeWidth={2.5} className="group-hover:rotate-90 transition-transform duration-300" />
