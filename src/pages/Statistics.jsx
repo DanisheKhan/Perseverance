@@ -445,17 +445,17 @@ const Statistics = () => {
                   />
                 </PieChart>
               </ResponsiveContainer>
-              
+
               {/* Custom Legend */}
               <div className="grid grid-cols-2 gap-2">
                 {categoryData.map((entry, index) => {
                   const total = categoryData.reduce((sum, item) => sum + item.value, 0);
                   const percentage = ((entry.value / total) * 100).toFixed(0);
-                  
+
                   return (
                     <div key={index} className="flex items-center gap-2 p-2 rounded-lg bg-zinc-800/30">
-                      <div 
-                        className="w-3 h-3 rounded-full shrink-0" 
+                      <div
+                        className="w-3 h-3 rounded-full shrink-0"
                         style={{ backgroundColor: entry.color }}
                       />
                       <div className="flex-1 min-w-0">
