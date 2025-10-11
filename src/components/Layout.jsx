@@ -1,5 +1,5 @@
 import { Outlet, Link, useLocation } from 'react-router-dom';
-import { FiHome, FiCheckCircle, FiBarChart2, FiSettings } from 'react-icons/fi';
+import { FiHome, FiCheckCircle, FiBarChart2, FiCalendar, FiSettings } from 'react-icons/fi';
 
 const Layout = () => {
   const location = useLocation();
@@ -8,6 +8,7 @@ const Layout = () => {
     { path: '/', label: 'Dashboard', icon: FiHome },
     { path: '/habits', label: 'Habits', icon: FiCheckCircle },
     { path: '/statistics', label: 'Statistics', icon: FiBarChart2 },
+    { path: '/calendar', label: 'Calendar', icon: FiCalendar },
     { path: '/settings', label: 'Settings', icon: FiSettings },
   ];
 

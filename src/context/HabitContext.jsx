@@ -145,6 +145,14 @@ export const HabitProvider = ({ children }) => {
     return !!completion;
   };
 
+  const updateCompletion = (completionId, updates) => {
+    setCompletions((prev) =>
+      prev.map((comp) =>
+        comp.id === completionId ? { ...comp, ...updates } : comp
+      )
+    );
+  };
+
   // Statistics Functions
   const calculateStreak = (habitId) => {
     const habitCompletions = completions
@@ -334,6 +342,7 @@ export const HabitProvider = ({ children }) => {
     getCompletionsForDate,
     getCompletionsForHabit,
     isHabitCompleteForDate,
+    updateCompletion,
     // Statistics functions
     calculateStreak,
     getWeeklyProgress,
