@@ -81,9 +81,9 @@ const Settings = () => {
   // Calculate app usage
   const daysUsing = completions.length > 0
     ? Math.floor(
-        (new Date() - new Date(Math.min(...completions.map((c) => new Date(c.date))))) /
-          (1000 * 60 * 60 * 24)
-      ) + 1
+      (new Date() - new Date(Math.min(...completions.map((c) => new Date(c.date))))) /
+      (1000 * 60 * 60 * 24)
+    ) + 1
     : 0;
 
   const handleSettingChange = (key, value) => {
@@ -197,10 +197,9 @@ const Settings = () => {
                     onClick={() => handleSettingChange('avatarEmoji', emoji)}
                     className={`
                       w-10 h-10 rounded-lg text-2xl flex items-center justify-center transition-all
-                      ${
-                        localSettings.avatarEmoji === emoji
-                          ? 'bg-indigo-500 ring-2 ring-indigo-400 scale-110'
-                          : 'bg-zinc-800 hover:bg-zinc-700'
+                      ${localSettings.avatarEmoji === emoji
+                        ? 'bg-indigo-500 ring-2 ring-indigo-400 scale-110'
+                        : 'bg-zinc-800 hover:bg-zinc-700'
                       }
                     `}
                   >
@@ -232,10 +231,9 @@ const Settings = () => {
                     onClick={() => handleSettingChange('theme', theme.id)}
                     className={`
                       w-full flex items-center gap-3 px-4 py-3 rounded-xl transition-all
-                      ${
-                        localSettings.theme === theme.id
-                          ? 'bg-indigo-500/20 border-2 border-indigo-500'
-                          : 'bg-zinc-800 border-2 border-transparent hover:border-zinc-700'
+                      ${localSettings.theme === theme.id
+                        ? 'bg-indigo-500/20 border-2 border-indigo-500'
+                        : 'bg-zinc-800 border-2 border-transparent hover:border-zinc-700'
                       }
                     `}
                   >
@@ -264,10 +262,9 @@ const Settings = () => {
                     onClick={() => handleSettingChange('accentColor', accent.color)}
                     className={`
                       relative p-3 rounded-xl transition-all
-                      ${
-                        localSettings.accentColor === accent.color
-                          ? 'ring-2 ring-offset-2 ring-offset-zinc-900 scale-110'
-                          : 'hover:scale-105'
+                      ${localSettings.accentColor === accent.color
+                        ? 'ring-2 ring-offset-2 ring-offset-zinc-900 scale-110'
+                        : 'hover:scale-105'
                       }
                     `}
                     style={{
