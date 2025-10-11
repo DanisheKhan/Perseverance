@@ -9,6 +9,7 @@ import HabitCard from '../components/HabitCard';
 import QuickStats from '../components/QuickStats';
 import WeekCalendar from '../components/WeekCalendar';
 import EmptyState from '../components/EmptyState';
+import SmartInsights from '../components/SmartInsights';
 import { FiPlus, FiCalendar } from 'react-icons/fi';
 import { HiSparkles } from 'react-icons/hi';
 
@@ -125,6 +126,9 @@ const Dashboard = () => {
 
       {/* Quick Stats */}
       <QuickStats stats={enhancedStats} />
+
+      {/* Smart Insights */}
+      <SmartInsights />
 
       {/* Week Calendar */}
       <div className="bg-zinc-900/50 backdrop-blur-sm rounded-2xl p-6 border border-zinc-800">
