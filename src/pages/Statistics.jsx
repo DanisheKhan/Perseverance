@@ -416,34 +416,57 @@ const Statistics = () => {
             Completions by Category
           </h2>
           {categoryData.length > 0 ? (
-            <ResponsiveContainer width="100%" height={250} className="md:h-[300px]">
-              <PieChart>
-                <Pie
-                  data={categoryData}
-                  cx="50%"
-                  cy="50%"
-                  labelLine={false}
-                  label={({ name, percent }) =>
-                    `${name} ${(percent * 100).toFixed(0)}%`
-                  }
-                  outerRadius={100}
-                  fill="#8884d8"
-                  dataKey="value"
-                >
-                  {categoryData.map((entry, index) => (
-                    <Cell key={`cell-${index}`} fill={entry.color} />
-                  ))}
-                </Pie>
-                <Tooltip
-                  contentStyle={{
-                    backgroundColor: '#18181B',
-                    border: '1px solid #27272A',
-                    borderRadius: '8px',
-                    color: '#FAFAFA',
-                  }}
-                />
-              </PieChart>
-            </ResponsiveContainer>
+            <div className="space-y-4">
+              <ResponsiveContainer width="100%" height={200}>
+                <PieChart>
+                  <Pie
+                    data={categoryData}
+                    cx="50%"
+                    cy="50%"
+                    labelLine={false}
+                    label={false}
+                    outerRadius={80}
+                    innerRadius={40}
+                    fill="#8884d8"
+                    dataKey="value"
+                    paddingAngle={2}
+                  >
+                    {categoryData.map((entry, index) => (
+                      <Cell key={`cell-${index}`} fill={entry.color} />
+                    ))}
+                  </Pie>
+                  <Tooltip
+                    contentStyle={{
+                      backgroundColor: '#18181B',
+                      border: '1px solid #27272A',
+                      borderRadius: '8px',
+                      color: '#FAFAFA',
+                    }}
+                  />
+                </PieChart>
+              </ResponsiveContainer>
+              
+              {/* Custom Legend */}
+              <div className="grid grid-cols-2 gap-2">
+                {categoryData.map((entry, index) => {
+                  const total = categoryData.reduce((sum, item) => sum + item.value, 0);
+                  const percentage = ((entry.value / total) * 100).toFixed(0);
+                  
+                  return (
+                    <div key={index} className="flex items-center gap-2 p-2 rounded-lg bg-zinc-800/30">
+                      <div 
+                        className="w-3 h-3 rounded-full shrink-0" 
+                        style={{ backgroundColor: entry.color }}
+                      />
+                      <div className="flex-1 min-w-0">
+                        <p className="text-xs text-zinc-300 truncate">{entry.name}</p>
+                        <p className="text-sm font-semibold text-zinc-100">{percentage}%</p>
+                      </div>
+                    </div>
+                  );
+                })}
+              </div>
+            </div>
           ) : (
             <div className="flex items-center justify-center h-[250px] md:h-[300px] text-zinc-500 text-sm md:text-base">
               No data available

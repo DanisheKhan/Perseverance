@@ -22,119 +22,141 @@ const Layout = () => {
 
   return (
     <div className="gradient-bg min-h-screen">
-      {/* Header */}
-      <header className="glass-effect sticky top-0 z-50 border-b border-[var(--border)]">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex items-center justify-between h-16">
-            {/* Logo */}
-            <div className="flex items-center">
-              <h1 className="text-2xl font-bold tracking-tight">
-                <span
-                  className="font-['Playfair_Display'] bg-gradient-to-r from-[var(--accent-primary)] to-[var(--accent-secondary)] bg-clip-text text-transparent"
+      {/* Header - Desktop Only Floating Translucent Navbar */}
+      <header className="hidden lg:block fixed top-0 left-0 right-0 z-50 px-3 sm:px-4 md:px-6 pt-4">
+        <div className="max-w-7xl mx-auto">
+          {/* Floating navbar container with blur and curve */}
+          <div className="relative backdrop-blur-xl bg-zinc-900/70 border border-zinc-800/50 rounded-3xl md:rounded-[32px] shadow-2xl shadow-black/20 overflow-hidden">
+            {/* Animated gradient background */}
+            <div className="absolute inset-0 bg-gradient-to-r from-indigo-500/5 via-purple-500/5 to-pink-500/5 opacity-50"></div>
+
+            {/* Content */}
+            <div className="relative flex items-center justify-between h-14 sm:h-16 md:h-[72px] px-3 sm:px-4 md:px-6">
+              {/* Logo */}
+              <div className="flex items-center shrink-0">
+                <h1 className="text-lg sm:text-xl md:text-2xl font-bold tracking-tight">
+                  <span className="font-['Playfair_Display'] bg-gradient-to-r from-indigo-400 via-purple-400 to-pink-400 bg-clip-text text-transparent">
+                    Perseverance
+                  </span>
+                </h1>
+              </div>
+
+              {/* Desktop Navigation */}
+              <nav className="hidden lg:flex items-center space-x-1">
+                {navItems.map((item) => {
+                  const Icon = item.icon;
+                  const active = isActive(item.path);
+
+                  return (
+                    <Link
+                      key={item.path}
+                      to={item.path}
+                      className={`
+                        group relative flex items-center px-3 xl:px-4 py-2 rounded-2xl text-sm font-medium
+                        transition-all duration-300 ease-out
+                        ${active
+                          ? 'text-white'
+                          : 'text-zinc-400 hover:text-white'
+                        }
+                      `}
+                    >
+                      {/* Active background with gradient */}
+                      {active && (
+                        <div className="absolute inset-0 bg-gradient-to-r from-indigo-600 to-purple-600 rounded-2xl shadow-lg shadow-indigo-500/30 animate-in fade-in zoom-in-95 duration-200"></div>
+                      )}
+
+                      {/* Hover effect */}
+                      {!active && (
+                        <div className="absolute inset-0 bg-white/5 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                      )}
+
+                      {/* Content */}
+                      <span className="relative flex items-center">
+                        <Icon className="mr-2" size={18} />
+                        {item.label}
+                      </span>
+                    </Link>
+                  );
+                })}
+              </nav>
+
+              {/* Action Buttons */}
+              <div className="hidden md:flex items-center gap-2">
+                <Link
+                  to="/focus"
+                  className="group relative flex items-center gap-2 px-3 md:px-4 py-2 rounded-2xl text-sm font-medium overflow-hidden transition-all duration-300 hover:scale-105"
                 >
-                  Perseverance
-                </span>
-              </h1>
+                  <div className="absolute inset-0 bg-gradient-to-r from-indigo-500 to-indigo-600 opacity-90 group-hover:opacity-100 transition-opacity"></div>
+                  <div className="absolute inset-0 bg-gradient-to-r from-indigo-400 to-purple-500 opacity-0 group-hover:opacity-20 blur transition-opacity"></div>
+                  <span className="relative text-white flex items-center gap-2">
+                    <FiTarget size={18} />
+                    <span className="hidden lg:inline">Focus</span>
+                  </span>
+                </Link>
+                <button
+                  onClick={() => setShowRewards(true)}
+                  className="group relative flex items-center gap-2 px-3 md:px-4 py-2 rounded-2xl text-sm font-medium overflow-hidden transition-all duration-300 hover:scale-105"
+                >
+                  <div className="absolute inset-0 bg-gradient-to-r from-amber-500 to-orange-600 opacity-90 group-hover:opacity-100 transition-opacity"></div>
+                  <div className="absolute inset-0 bg-gradient-to-r from-amber-400 to-orange-500 opacity-0 group-hover:opacity-20 blur transition-opacity"></div>
+                  <span className="relative text-white flex items-center gap-2">
+                    <FiAward size={18} />
+                    <span className="hidden lg:inline">Rewards</span>
+                  </span>
+                </button>
+              </div>
+
+              {/* Mobile Menu Button - Removed */}
             </div>
-
-            {/* Navigation */}
-            <nav className="hidden lg:flex space-x-1">
-              {navItems.map((item) => {
-                const Icon = item.icon;
-                const active = isActive(item.path);
-
-                return (
-                  <Link
-                    key={item.path}
-                    to={item.path}
-                    className={`
-                      flex items-center px-3 py-2 rounded-lg text-sm font-medium
-                      transition-all duration-200
-                      ${active
-                        ? 'bg-[var(--accent-primary)] text-white shadow-[0_10px_30px_var(--shadow)]'
-                        : 'text-[var(--text-secondary)] hover:text-[var(--text-primary)] hover:bg-[var(--bg-secondary)]'
-                      }
-                    `}
-                  >
-                    <Icon className="mr-2" size={18} />
-                    {item.label}
-                  </Link>
-                );
-              })}
-            </nav>
-
-            {/* Action Buttons */}
-            <div className="hidden md:flex items-center gap-2">
-              <Link
-                to="/focus"
-                className="flex items-center gap-2 px-4 py-2 bg-indigo-500 hover:bg-indigo-600 text-white rounded-lg text-sm font-medium transition-colors"
-              >
-                <FiTarget size={18} />
-                Focus
-              </Link>
-              <button
-                onClick={() => setShowRewards(true)}
-                className="flex items-center gap-2 px-4 py-2 bg-amber-500 hover:bg-amber-600 text-white rounded-lg text-sm font-medium transition-colors"
-              >
-                <FiAward size={18} />
-                Rewards
-              </button>
-            </div>
-
-            {/* Mobile Navigation Toggle (for future implementation) */}
-            <button className="lg:hidden text-[var(--text-primary)]">
-              <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
-              </svg>
-            </button>
           </div>
         </div>
       </header>
 
-      {/* Mobile Navigation */}
-      <nav className="lg:hidden fixed bottom-0 left-0 right-0 glass-effect border-t border-[var(--border)] z-50">
-        <div className="flex justify-around items-center h-16">
-          {navItems.slice(0, 5).map((item) => {
-            const Icon = item.icon;
-            const active = isActive(item.path);
+      {/* Mobile Navigation - Clean Minimal Bottom Bar */}
+      <nav className="lg:hidden fixed bottom-0 left-0 right-0 z-50 px-4 pb-4 safe-bottom">
+        <div className="relative backdrop-blur-2xl bg-zinc-900/90 border border-zinc-800/60 rounded-[28px] shadow-2xl shadow-black/40 overflow-hidden">
+          {/* Subtle gradient background */}
+          <div className="absolute inset-0 bg-gradient-to-t from-indigo-500/3 to-transparent"></div>
 
-            return (
-              <Link
-                key={item.path}
-                to={item.path}
-                className={`
-                  flex flex-col items-center justify-center flex-1 h-full
-                  transition-colors duration-200
-                  ${active
-                    ? 'text-[var(--accent-primary)]'
-                    : 'text-[var(--text-secondary)]'
-                  }
-                `}
-              >
-                <Icon size={20} />
-                <span className="text-xs mt-1">{item.label}</span>
-              </Link>
-            );
-          })}
-          <Link
-            to="/settings"
-            className={`
-              flex flex-col items-center justify-center flex-1 h-full
-              transition-colors duration-200
-              ${isActive('/settings')
-                ? 'text-[var(--accent-primary)]'
-                : 'text-[var(--text-secondary)]'
-              }
-            `}
-          >
-            <FiSettings size={20} />
-            <span className="text-xs mt-1">Settings</span>
-          </Link>
+          {/* Nav items - Simplified Grid */}
+          <div className="relative grid grid-cols-6 gap-0 h-[68px] px-1">
+            {navItems.map((item) => {
+              const Icon = item.icon;
+              const active = isActive(item.path);
+
+              return (
+                <Link
+                  key={item.path}
+                  to={item.path}
+                  className="group relative flex flex-col items-center justify-center transition-all duration-300"
+                >
+                  {/* Simple icon with active state */}
+                  <div className={`
+                    relative flex items-center justify-center w-11 h-11 rounded-[18px] 
+                    transition-all duration-300
+                    ${active
+                      ? 'bg-gradient-to-br from-indigo-500 to-purple-600 shadow-lg shadow-indigo-500/40 scale-105'
+                      : 'text-zinc-500 hover:text-zinc-300 hover:bg-white/5'
+                    }
+                  `}>
+                    <Icon size={22} className={active ? 'text-white' : ''} />
+                  </div>
+
+                  {/* Minimal label - only show for active */}
+                  {active && (
+                    <span className="absolute -bottom-1 text-[9px] font-medium text-indigo-400 animate-in fade-in slide-in-from-bottom-1 duration-200">
+                      •
+                    </span>
+                  )}
+                </Link>
+              );
+            })}
+          </div>
         </div>
       </nav>
 
       {/* Main Content */}
-      <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 pb-24 lg:pb-8">
+      <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-6 lg:pt-28 pb-24 lg:pb-8">
         <div className="page-transition">
           <Outlet />
         </div>
