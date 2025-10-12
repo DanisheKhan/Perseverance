@@ -1,4 +1,5 @@
 import { useState, useEffect, useRef } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { useHabits } from '../context/HabitContext';
 import {
   FiUser,
@@ -16,6 +17,7 @@ import {
   FiZap,
   FiCommand,
   FiAlertTriangle,
+  FiLogOut,
 } from 'react-icons/fi';
 import { HiSparkles } from 'react-icons/hi';
 import toast from 'react-hot-toast';
@@ -53,7 +55,19 @@ const KEYBOARD_SHORTCUTS = [
 ];
 
 const Settings = () => {
-  const { settings, updateSettings, exportData, importData, clearAllData, habits, completions } = useHabits();
+  const {
+    settings,
+    updateSettings,
+    exportData,
+    importData,
+    clearAllData,
+    habits,
+    completions,
+    user,
+    isAuthenticated,
+    logout,
+  } = useHabits();
+  const navigate = useNavigate();
   const fileInputRef = useRef(null);
 
   const [localSettings, setLocalSettings] = useState({
@@ -90,6 +104,11 @@ const Settings = () => {
     setLocalSettings((prev) => ({ ...prev, [key]: value }));
     updateSettings({ ...settings, [key]: value });
     toast.success('Setting updated');
+  };
+
+  const handleLogout = () => {
+    logout();
+    navigate('/login');
   };
 
   const handleExport = () => {
@@ -171,6 +190,46 @@ const Settings = () => {
           </div>
 
           <div className="space-y-4">
+            {/* Authentication Status */}
+            {isAuthenticated && user && (
+              <div className="p-4 bg-indigo-500/10 border border-indigo-500/20 rounded-xl">
+                <div className="flex items-center justify-between mb-2">
+                  <span className="text-sm font-medium text-zinc-400">Logged in as</span>
+                  <span className="text-xs px-2 py-1 bg-green-500/20 text-green-400 rounded-full">
+                    Synced
+                  </span>
+                </div>
+                <p className="text-sm font-semibold text-zinc-100">{user.email}</p>
+                <button
+                  onClick={handleLogout}
+                  className="mt-3 w-full flex items-center justify-center gap-2 px-4 py-2 bg-zinc-800 hover:bg-zinc-700 text-zinc-300 rounded-lg transition-colors"
+                >
+                  <FiLogOut size={16} />
+                  Logout
+                </button>
+              </div>
+            )}
+
+            {!isAuthenticated && (
+              <div className="p-4 bg-amber-500/10 border border-amber-500/20 rounded-xl">
+                <div className="flex items-center gap-2 mb-2">
+                  <span className="text-sm font-medium text-amber-400">Guest Mode</span>
+                  <span className="text-xs px-2 py-1 bg-amber-500/20 text-amber-400 rounded-full">
+                    Local Storage
+                  </span>
+                </div>
+                <p className="text-xs text-zinc-400 mb-3">
+                  Data stored locally on this device only
+                </p>
+                <button
+                  onClick={() => navigate('/login')}
+                  className="w-full px-4 py-2 bg-indigo-600 hover:bg-indigo-700 text-white rounded-lg transition-colors text-sm font-medium"
+                >
+                  Login or Sign Up
+                </button>
+              </div>
+            )}
+
             {/* Display Name */}
             <div>
               <label className="block text-sm font-medium text-zinc-400 mb-2">

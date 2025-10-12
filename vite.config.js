@@ -67,12 +67,14 @@ export default defineConfig({
 
   // Development server configuration
   server: {
+    host: true, // Enable network access
     port: 3000,
     open: true,
   },
 
   // Preview server configuration
   preview: {
+    host: true, // Enable network access
     port: 4173,
     open: true,
   },

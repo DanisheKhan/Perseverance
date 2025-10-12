@@ -1,12 +1,15 @@
 import { useState, useEffect, lazy, Suspense } from 'react';
-import { Routes, Route } from 'react-router-dom';
+import { Routes, Route, Navigate } from 'react-router-dom';
 import Layout from './components/Layout';
 import Dashboard from './pages/Dashboard';
 import Habits from './pages/Habits';
+import Login from './pages/Login';
+import Register from './pages/Register';
 import ErrorBoundary from './components/ErrorBoundary';
 import { FiWifiOff, FiDownload } from 'react-icons/fi';
 import toast from 'react-hot-toast';
 import { shouldShowBackupReminder, snoozeBackupReminder, exportBackup } from './services/backupService';
+import { useHabits } from './context/HabitContext';
 
 // Lazy load heavy components for better performance
 const Statistics = lazy(() => import('./pages/Statistics'));
@@ -151,8 +154,12 @@ function App() {
 
       <Suspense fallback={<PageLoader />}>
         <Routes>
+          <Route path="/login" element={<Login />} />
+          <Route path="/register" element={<Register />} />
+
           <Route path="/" element={<Layout />}>
-            <Route index element={<Dashboard />} />
+            <Route index element={<Navigate to="/dashboard" replace />} />
+            <Route path="dashboard" element={<Dashboard />} />
             <Route path="habits" element={<Habits />} />
             <Route path="statistics" element={<Statistics />} />
             <Route path="calendar" element={<Calendar />} />

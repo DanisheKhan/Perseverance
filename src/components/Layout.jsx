@@ -1,11 +1,20 @@
 import { useState } from 'react';
-import { Outlet, Link, useLocation } from 'react-router-dom';
-import { FiHome, FiCheckCircle, FiBarChart2, FiCalendar, FiSettings, FiBook, FiTarget, FiAward } from 'react-icons/fi';
+import { Outlet, Link, useLocation, useNavigate } from 'react-router-dom';
+import { FiHome, FiCheckCircle, FiBarChart2, FiCalendar, FiSettings, FiBook, FiTarget, FiAward, FiUser, FiLogOut, FiChevronDown } from 'react-icons/fi';
 import RewardsModal from './RewardsModal';
+import { useHabits } from '../context/HabitContext';
 
 const Layout = () => {
   const location = useLocation();
+  const navigate = useNavigate();
   const [showRewards, setShowRewards] = useState(false);
+  const [showUserMenu, setShowUserMenu] = useState(false);
+  const { user, isAuthenticated, logout } = useHabits();
+
+  const handleLogout = () => {
+    logout();
+    navigate('/login');
+  };
 
   const navItems = [
     { path: '/', label: 'Dashboard', icon: FiHome },
@@ -104,6 +113,61 @@ const Layout = () => {
                     <span className="hidden lg:inline">Rewards</span>
                   </span>
                 </button>
+
+                {/* User Menu */}
+                {isAuthenticated ? (
+                  <div className="relative">
+                    <button
+                      onClick={() => setShowUserMenu(!showUserMenu)}
+                      className="group relative flex items-center gap-2 px-3 md:px-4 py-2 rounded-2xl text-sm font-medium overflow-hidden transition-all duration-300 hover:scale-105 bg-white/5 hover:bg-white/10 text-white"
+                    >
+                      <FiUser size={18} />
+                      <span className="hidden xl:inline">{user?.name || 'User'}</span>
+                      <FiChevronDown size={16} className={`transition-transform duration-200 ${showUserMenu ? 'rotate-180' : ''}`} />
+                    </button>
+
+                    {/* Dropdown Menu */}
+                    {showUserMenu && (
+                      <>
+                        <div
+                          className="fixed inset-0 z-[100]"
+                          onClick={() => setShowUserMenu(false)}
+                        ></div>
+                        <div className="absolute right-0 mt-2 w-56 z-[110] rounded-2xl backdrop-blur-xl bg-zinc-900/95 border border-zinc-800/50 shadow-2xl overflow-hidden animate-in fade-in slide-in-from-top-2 duration-200">
+                          <div className="p-4 border-b border-zinc-800/50">
+                            <p className="text-white font-semibold">{user?.name}</p>
+                            <p className="text-zinc-400 text-sm mt-1">{user?.email}</p>
+                          </div>
+                          <div className="py-2">
+                            <Link
+                              to="/settings"
+                              onClick={() => setShowUserMenu(false)}
+                              className="flex items-center gap-3 px-4 py-3 text-zinc-300 hover:text-white hover:bg-white/5 transition-colors"
+                            >
+                              <FiSettings size={18} />
+                              <span>Settings</span>
+                            </Link>
+                            <button
+                              onClick={handleLogout}
+                              className="w-full flex items-center gap-3 px-4 py-3 text-red-400 hover:text-red-300 hover:bg-red-500/10 transition-colors"
+                            >
+                              <FiLogOut size={18} />
+                              <span>Logout</span>
+                            </button>
+                          </div>
+                        </div>
+                      </>
+                    )}
+                  </div>
+                ) : (
+                  <Link
+                    to="/login"
+                    className="group relative flex items-center gap-2 px-3 md:px-4 py-2 rounded-2xl text-sm font-medium overflow-hidden transition-all duration-300 hover:scale-105 bg-white/5 hover:bg-white/10 text-white"
+                  >
+                    <FiUser size={18} />
+                    <span className="hidden lg:inline">Login</span>
+                  </Link>
+                )}
               </div>
 
               {/* Mobile Menu Button - Removed */}
@@ -118,8 +182,8 @@ const Layout = () => {
           {/* Subtle gradient background */}
           <div className="absolute inset-0 bg-gradient-to-t from-indigo-500/3 to-transparent"></div>
 
-          {/* Nav items - Simplified Grid */}
-          <div className="relative grid grid-cols-6 gap-0 h-[68px] px-1">
+          {/* Nav items - Grid with 7 items including account */}
+          <div className="relative grid grid-cols-7 gap-0 h-[68px] px-1">
             {navItems.map((item) => {
               const Icon = item.icon;
               const active = isActive(item.path);
@@ -151,7 +215,63 @@ const Layout = () => {
                 </Link>
               );
             })}
+
+            {/* Account Button */}
+            {isAuthenticated ? (
+              <button
+                onClick={() => setShowUserMenu(!showUserMenu)}
+                className="group relative flex flex-col items-center justify-center transition-all duration-300"
+              >
+                <div className="relative flex items-center justify-center w-11 h-11 rounded-[18px] text-zinc-500 hover:text-zinc-300 hover:bg-white/5 transition-all duration-300">
+                  <FiUser size={22} />
+                  {/* Green dot for logged in status */}
+                  <div className="absolute top-1 right-1 w-2 h-2 bg-green-500 rounded-full border border-zinc-900"></div>
+                </div>
+              </button>
+            ) : (
+              <Link
+                to="/login"
+                className="group relative flex flex-col items-center justify-center transition-all duration-300"
+              >
+                <div className="relative flex items-center justify-center w-11 h-11 rounded-[18px] text-zinc-500 hover:text-zinc-300 hover:bg-white/5 transition-all duration-300">
+                  <FiUser size={22} />
+                </div>
+              </Link>
+            )}
           </div>
+
+          {/* Mobile User Menu Dropdown */}
+          {showUserMenu && isAuthenticated && (
+            <>
+              <div
+                className="fixed inset-0 z-[100]"
+                onClick={() => setShowUserMenu(false)}
+              ></div>
+              <div className="absolute bottom-20 right-4 w-64 z-[110] rounded-2xl backdrop-blur-xl bg-zinc-900/95 border border-zinc-800/50 shadow-2xl overflow-hidden animate-in fade-in slide-in-from-bottom-2 duration-200">
+                <div className="p-4 border-b border-zinc-800/50">
+                  <p className="text-white font-semibold truncate">{user?.name}</p>
+                  <p className="text-zinc-400 text-sm mt-1 truncate">{user?.email}</p>
+                </div>
+                <div className="py-2">
+                  <Link
+                    to="/settings"
+                    onClick={() => setShowUserMenu(false)}
+                    className="flex items-center gap-3 px-4 py-3 text-zinc-300 hover:text-white hover:bg-white/5 transition-colors"
+                  >
+                    <FiSettings size={18} />
+                    <span>Settings</span>
+                  </Link>
+                  <button
+                    onClick={handleLogout}
+                    className="w-full flex items-center gap-3 px-4 py-3 text-red-400 hover:text-red-300 hover:bg-red-500/10 transition-colors"
+                  >
+                    <FiLogOut size={18} />
+                    <span>Logout</span>
+                  </button>
+                </div>
+              </div>
+            </>
+          )}
         </div>
       </nav>
 
